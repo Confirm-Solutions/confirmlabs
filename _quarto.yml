@@ -4,15 +4,19 @@ project:
 website:
   title: "Confirm"
   navbar:
+    title: false
+    background: white
+    pinned: false
     left:
       - href: index.qmd
-        text: Home
+        text: Confirm
 
 format:
   html:
-    theme: cosmo
     css: styles.css
     toc: true
+    toc-location: left
+    code-fold: true
 
 execute:
   freeze: auto
