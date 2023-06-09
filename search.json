@@ -51,15 +51,15 @@
   {
     "objectID": "posts/post2.html",
     "href": "posts/post2.html",
-    "title": "A Quarto Page Layout Example",
+    "title": "vscode ipynb",
     "section": "",
-    "text": "advice on using notebooks and vscode with quarto\nwriting from a jupyter notebook .ipynb instead of .qmd.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  figsize=(2,2),\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+    "text": "advice on using notebooks and vscode with quarto\nwriting from a jupyter notebook .ipynb instead of .qmd.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.random.normal(size=10000)\nplt.hist(x, bins=100)\nplt.show()\n\n\n\n\n\n\nFigure 1: graphhhh\n\n\n\n\n\nCode\nimport pandas as pd\niris = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv')\niris.sample(10)\n\n\n\n\n\n\n\nTable 1: Iris\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n135\n7.7\n3.0\n6.1\n2.3\nvirginica\n\n\n141\n6.9\n3.1\n5.1\n2.3\nvirginica\n\n\n78\n6.0\n2.9\n4.5\n1.5\nversicolor\n\n\n115\n6.4\n3.2\n5.3\n2.3\nvirginica\n\n\n114\n5.8\n2.8\n5.1\n2.4\nvirginica\n\n\n118\n7.7\n2.6\n6.9\n2.3\nvirginica\n\n\n121\n5.6\n2.8\n4.9\n2.0\nvirginica\n\n\n69\n5.6\n2.5\n3.9\n1.1\nversicolor\n\n\n112\n6.8\n3.0\n5.5\n2.1\nvirginica\n\n\n120\n6.9\n3.2\n5.7\n2.3\nvirginica"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Confirm",
     "section": "",
-    "text": "A Quarto Page Layout Example\n\n\nInspired by Tufte Handout, Using Quarto\n\n\n\n\n\n\n\n\n\nJun 9, 2023\n\n\n\n\n\n\n  \n\n\n\n\nA Quarto Page Layout Example\n\n\nInspired by Tufte Handout, Using Quarto\n\n\n\n\n\n\n\n\n\nJun 9, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "A Quarto Page Layout Example\n\n\n\n\n\n\n\n\n\nJun 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nvscode ipynb\n\n\n\n\n\n\n\n\n\nJun 9, 2023\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
