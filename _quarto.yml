@@ -18,6 +18,10 @@ format:
     toc-location: left
     code-fold: true
 
+filters:
+   - lightbox
+lightbox: auto
+
 execute:
   freeze: auto
     

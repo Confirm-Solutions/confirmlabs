@@ -2,6 +2,6 @@
 listing:
   contents: posts
   sort: "date desc"
-  type: default
+  type: grid
   categories: false
 ---
