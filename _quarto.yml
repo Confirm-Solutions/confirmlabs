@@ -24,4 +24,6 @@ lightbox: auto
 
 execute:
   freeze: auto
-    
+
+resources:
+  - CNAME 
