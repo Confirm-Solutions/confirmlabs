@@ -1,1 +1,2 @@
-Sitemap: https://confirmlabs.org/sitemap.xml
+Sitemap: https://confirmlabs.org
+www.confirmlabs.org/sitemap.xml
