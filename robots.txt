@@ -1,1 +1,1 @@
-Sitemap: https://github.com/Confirm-Solutions/confirmlabs/sitemap.xml
+Sitemap: https://confirmlabs.org/sitemap.xml
