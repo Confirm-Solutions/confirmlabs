@@ -2,17 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://confirmlabs.org
-www.confirmlabs.org/posts/post1.html</loc>
-    <lastmod>2023-06-09T21:55:02.007Z</lastmod>
+www.confirmlabs.org/index.html</loc>
+    <lastmod>2023-06-20T21:56:48.270Z</lastmod>
   </url>
   <url>
     <loc>https://confirmlabs.org
 www.confirmlabs.org/posts/post2.html</loc>
-    <lastmod>2023-06-09T21:55:03.107Z</lastmod>
+    <lastmod>2023-06-20T21:56:49.302Z</lastmod>
   </url>
   <url>
     <loc>https://confirmlabs.org
-www.confirmlabs.org/index.html</loc>
-    <lastmod>2023-06-09T21:55:03.835Z</lastmod>
+www.confirmlabs.org/posts/obvious_completions.html</loc>
+    <lastmod>2023-06-20T21:56:50.126Z</lastmod>
+  </url>
+  <url>
+    <loc>https://confirmlabs.org
+www.confirmlabs.org/posts/post1.html</loc>
+    <lastmod>2023-06-20T21:56:51.570Z</lastmod>
   </url>
 </urlset>

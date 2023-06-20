@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2023-06-12">
 
-<title>Confirm</title>
+<title>Confirm - [DRAFT] A catalog of several million tasks Pythia can do.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,40 +60,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="floating nav-fixed">
@@ -110,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Confirm</span></a>
   </li>  
 </ul>
@@ -124,7 +94,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#bigrams-and-trigrams" id="toc-bigrams-and-trigrams" class="nav-link" data-scroll-target="#bigrams-and-trigrams">Bigrams and Trigrams</a></li>
+  <li><a href="#input-scanning" id="toc-input-scanning" class="nav-link" data-scroll-target="#input-scanning">Input scanning</a></li>
+  <li><a href="#what-were-using-these-datasets-for" id="toc-what-were-using-these-datasets-for" class="nav-link" data-scroll-target="#what-were-using-these-datasets-for">What we’re using these datasets for?</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="obvious_completions.ipynb" download="obvious_completions.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
@@ -133,88 +112,89 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">[DRAFT] A catalog of several million tasks Pythia can do.</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 12, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Much of mechanistic interpretability either focuses on toy tasks in toy models. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (cite a bunch of examples, transformer circuits, other toy work, sparse transformers, jermyn paper). Other work focuses on small datasets of realistic prompts applied to real-world large language model. (cite IOI, alpaca das, rome, acdc, greater-than, …).</p>
+<p>To add a new approach, we would like to scale up interpretability methods to a large dataset of tasks focused on real models.</p>
+<p>To that end, we’re sharing two datasets:</p>
+<ol type="1">
+<li>a dataset of token-bigram and token-trigram statistics from The Pile (CITE) including tables of one and two token prompts with their most likely completions.</li>
+<li>an input scanning dataset that uses the Pythia 2.8B model to determine which tokens are extremely predictive in context.</li>
+</ol>
+<p>The construction of both datasets is unsupervised. The input scanning dataset covers ~100M tokens of The Pile and could be extended to the full dataset if desired.</p>
+</section>
+<section id="bigrams-and-trigrams" class="level2">
+<h2 class="anchored" data-anchor-id="bigrams-and-trigrams">Bigrams and Trigrams</h2>
+<p>We process the entire deduplicated Pile for bigram and trigram counts. [link to the code for a further description of the construction of the dataset]…</p>
+<p>Some whitespace token bigrams will also tokenize as a single token. For example, with the GPT-NeoX tokenizer, <code>\n\n\t\t</code> is a token, <code>\t</code> is a token <em>and</em> <code>\n\n\t\t\t</code> is also token. This can cause problems when automatically tokenizing many prompts.</p>
+<ul>
+<li>TODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data.</li>
+</ul>
+</section>
+<section id="input-scanning" class="level2">
+<h2 class="anchored" data-anchor-id="input-scanning">Input scanning</h2>
+<p>An unsupervised method for finding examples of a model’s predictive capabilities.</p>
+<p>We scan through the pre-training corpus <span class="math inline">\({t_0,...,t_N}\)</span> and compare the output of the model on a pair of prompts: - <span class="math inline">\(p_0 = [t_i, ... t_{i + n}]\)</span> is a contiguous <span class="math inline">\(n\)</span>-token prompt from the pre-training corpus. - <span class="math inline">\(p_1 = [t_{i-1}, t_i, ... t_{i + n}]\)</span> is an <span class="math inline">\((n+1)\)</span>-token prompt where an additional token, <span class="math inline">\(t_{i-1}\)</span> has been added in the backwards direction in the text.</p>
+<p>When <span class="math inline">\(M(p_1)\)</span> differs substantially from <span class="math inline">\(M(p_0)\)</span>, we capture the two prompts as a “task” that the model has succeeded at regardless of whether the model is correct or not. To be more precise, we accept the task if:</p>
+<p><span class="math display">\[\mathrm{JSD}(M(p_1), M(p_2)) &gt; 0.5\]</span></p>
+<p>where JSD is the <a href="https://en.wikipedia.org/wiki/Jensen–Shannon_divergence">Jensen-Shannon Divergence</a>. By focusing on tasks for which the addition of <span class="math inline">\(t_{i - 1}\)</span> to the prompt had a large influence, we expect to find</p>
+<ul>
+<li>TODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data.</li>
+</ul>
+<p>TODO: Examples of input…</p>
+</section>
+<section id="what-were-using-these-datasets-for" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-using-these-datasets-for">What we’re using these datasets for?</h2>
+<p>There’s a lot we want to do with this data.</p>
+<ul>
+<li>Producing a mechanistic map of a model’s internals:
+<ul>
+<li>Mapping out the features and circuits responsible for each task.</li>
+<li>Are there patterns to</li>
+<li>This map will</li>
+</ul></li>
+<li>Using the dataset as a benchmark for automated circuit identification algorithms like (ACDC, boundless DAS).</li>
+<li>Look for inputs that activate portions of the network for which we don’t have any activators yet.</li>
+<li>Finding examples of superposition in the wild. The number of tasks available via input scanning exceeds the number of neurons in Pythia 2.8B (TODO: how many?). Therefore, we should be able to find directions in activation space that interfere.</li>
+</ul>
+<iframe width="100%" height="492" frameborder="0" src="https://observablehq.com/embed/@confirmlabs/ngrams@97?cells=bigrams">
+</iframe>
+<iframe width="100%" height="492" frameborder="0" src="https://observablehq.com/embed/@confirmlabs/ngrams@97?cells=trigrams">
+</iframe>
 
 
+</section>
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1686528000000" data-listing-file-modified-sort="1687298185290" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
-<a href="./posts/obvious_completions.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-[DRAFT] A catalog of several million tasks Pythia can do.
-</h5>
-<div class="card-text listing-description">
-Much of mechanistic interpretability either focuses on toy tasks in toy models. <sup>1</sup> (cite a bunch of examples, transformer circuits, other toy work, sparse transformers, jermyn paper). Other work focuses on small datasets of realistic prompts…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
 
-</div>
-<div class="listing-date">
-Jun 12, 2023
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1686268800000" data-listing-file-modified-sort="1687298185290" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<a href="./posts/post2.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/post2_files/figure-html/fig-graph-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-vscode ipynb
-</h5>
-<div class="card-text listing-description">
-advice on using notebooks and vscode with quarto
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
-</div>
-<div class="listing-date">
-Jun 9, 2023
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1686268800000" data-listing-file-modified-sort="1687298185290" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
-<a href="./posts/post1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/post1_files/figure-html/fig-polar-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-A Quarto Page Layout Example
-</h5>
-<div class="card-text listing-description">
-This document demonstrates the use of…<span class="citation" data-cites="xie2018"></span><sup></sup>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Jun 9, 2023
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+<ol>
+<li id="fn1"><p>We do not aim to criticize such work, only to contrast. There is clearly immense potential in toy model.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
