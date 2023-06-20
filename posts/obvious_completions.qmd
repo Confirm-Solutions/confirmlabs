@@ -71,6 +71,8 @@ where JSD is the [Jensen-Shannon Divergence](https://en.wikipedia.org/wiki/Jense
 
 TODO: Examples of input...
 
+TODO: link to the huggingface pages.
+
 ## What we're using these datasets for?
 There's a lot we want to do with this data. 
 
@@ -87,7 +89,23 @@ There's a lot we want to do with this data.
   many?). Therefore, we should be able to find directions in activation space
   that interfere.
 
+
+## Likely bigram completions
+
+The table below shows the bigram completions in The Pile sorted by their frequency of occurence:
+- `sum_count`: the number of times the first two tokens of the trigram occur in The Pile.
+- `frac_max`: the fraction of instances where the third token is the completion of the trigram.
+- `token#`: the tokens of the bigram.
+
 <iframe width="100%" height="492" frameborder="0"
   src="https://observablehq.com/embed/@confirmlabs/ngrams@97?cells=bigrams"></iframe>
+
+## Likely trigram completions
+
+The table below shows 100,000 of the most predictive trigrams in The Pile sorted by their frequency of occurence:
+- `sum_count`: the number of times the first two tokens of the trigram occur in The Pile.
+- `frac_max`: the fraction of instances where the third token is the completion of the trigram.
+- `token#`: the tokens of the trigram.
+
 <iframe width="100%" height="492" frameborder="0"
   src="https://observablehq.com/embed/@confirmlabs/ngrams@97?cells=trigrams"></iframe>
