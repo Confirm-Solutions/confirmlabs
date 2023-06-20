@@ -102,6 +102,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#bigrams-and-trigrams" id="toc-bigrams-and-trigrams" class="nav-link" data-scroll-target="#bigrams-and-trigrams">Bigrams and Trigrams</a></li>
   <li><a href="#input-scanning" id="toc-input-scanning" class="nav-link" data-scroll-target="#input-scanning">Input scanning</a></li>
   <li><a href="#what-were-using-these-datasets-for" id="toc-what-were-using-these-datasets-for" class="nav-link" data-scroll-target="#what-were-using-these-datasets-for">What we’re using these datasets for?</a></li>
+  <li><a href="#likely-bigram-completions" id="toc-likely-bigram-completions" class="nav-link" data-scroll-target="#likely-bigram-completions">Likely bigram completions</a></li>
+  <li><a href="#likely-trigram-completions" id="toc-likely-trigram-completions" class="nav-link" data-scroll-target="#likely-trigram-completions">Likely trigram completions</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="obvious_completions.ipynb" download="obvious_completions.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
 </nav>
@@ -165,6 +167,7 @@ ul.task-list li input[type="checkbox"] {
 <li>TODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data.</li>
 </ul>
 <p>TODO: Examples of input…</p>
+<p>TODO: link to the huggingface pages.</p>
 </section>
 <section id="what-were-using-these-datasets-for" class="level2">
 <h2 class="anchored" data-anchor-id="what-were-using-these-datasets-for">What we’re using these datasets for?</h2>
@@ -180,8 +183,16 @@ ul.task-list li input[type="checkbox"] {
 <li>Look for inputs that activate portions of the network for which we don’t have any activators yet.</li>
 <li>Finding examples of superposition in the wild. The number of tasks available via input scanning exceeds the number of neurons in Pythia 2.8B (TODO: how many?). Therefore, we should be able to find directions in activation space that interfere.</li>
 </ul>
+</section>
+<section id="likely-bigram-completions" class="level2">
+<h2 class="anchored" data-anchor-id="likely-bigram-completions">Likely bigram completions</h2>
+<p>The table below shows the bigram completions in The Pile sorted by their frequency of occurence: - <code>sum_count</code>: the number of times the first two tokens of the trigram occur in The Pile. - <code>frac_max</code>: the fraction of instances where the third token is the completion of the trigram. - <code>token#</code>: the tokens of the bigram.</p>
 <iframe width="100%" height="492" frameborder="0" src="https://observablehq.com/embed/@confirmlabs/ngrams@97?cells=bigrams">
 </iframe>
+</section>
+<section id="likely-trigram-completions" class="level2">
+<h2 class="anchored" data-anchor-id="likely-trigram-completions">Likely trigram completions</h2>
+<p>The table below shows 100,000 of the most predictive trigrams in The Pile sorted by their frequency of occurence: - <code>sum_count</code>: the number of times the first two tokens of the trigram occur in The Pile. - <code>frac_max</code>: the fraction of instances where the third token is the completion of the trigram. - <code>token#</code>: the tokens of the trigram.</p>
 <iframe width="100%" height="492" frameborder="0" src="https://observablehq.com/embed/@confirmlabs/ngrams@97?cells=trigrams">
 </iframe>
 

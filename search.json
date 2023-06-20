@@ -4,56 +4,7 @@
     "href": "index.html",
     "title": "Confirm",
     "section": "",
-    "text": "[DRAFT] A catalog of several million tasks Pythia can do.\n\n\n\n\n\n\n\n\n\nJun 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nvscode ipynb\n\n\n\n\n\n\n\n\n\nJun 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nA Quarto Page Layout Example\n\n\n\n\n\n\n\n\n\nJun 9, 2023\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/post2.html",
-    "href": "posts/post2.html",
-    "title": "vscode ipynb",
-    "section": "",
-    "text": "advice on using notebooks and vscode with quarto\nwriting from a jupyter notebook .ipynb instead of .qmd.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.random.normal(size=10000)\nplt.hist(x, bins=100)\nplt.show()\n\n\n\n\n\n\nFigure 1: graphhhh\n\n\n\n\n\nCode\nimport pandas as pd\niris = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv')\niris.sample(10)\n\n\n\n\n\n\n\nTable 1: Iris\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n135\n7.7\n3.0\n6.1\n2.3\nvirginica\n\n\n141\n6.9\n3.1\n5.1\n2.3\nvirginica\n\n\n78\n6.0\n2.9\n4.5\n1.5\nversicolor\n\n\n115\n6.4\n3.2\n5.3\n2.3\nvirginica\n\n\n114\n5.8\n2.8\n5.1\n2.4\nvirginica\n\n\n118\n7.7\n2.6\n6.9\n2.3\nvirginica\n\n\n121\n5.6\n2.8\n4.9\n2.0\nvirginica\n\n\n69\n5.6\n2.5\n3.9\n1.1\nversicolor\n\n\n112\n6.8\n3.0\n5.5\n2.1\nvirginica\n\n\n120\n6.9\n3.2\n5.7\n2.3\nvirginica"
-  },
-  {
-    "objectID": "posts/obvious_completions.html",
-    "href": "posts/obvious_completions.html",
-    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
-    "section": "",
-    "text": "Much of mechanistic interpretability either focuses on toy tasks in toy models. 1 (cite a bunch of examples, transformer circuits, other toy work, sparse transformers, jermyn paper). Other work focuses on small datasets of realistic prompts applied to real-world large language model. (cite IOI, alpaca das, rome, acdc, greater-than, …).\nTo add a new approach, we would like to scale up interpretability methods to a large dataset of tasks focused on real models.\nTo that end, we’re sharing two datasets:\n\na dataset of token-bigram and token-trigram statistics from The Pile (CITE) including tables of one and two token prompts with their most likely completions.\nan input scanning dataset that uses the Pythia 2.8B model to determine which tokens are extremely predictive in context.\n\nThe construction of both datasets is unsupervised. The input scanning dataset covers ~100M tokens of The Pile and could be extended to the full dataset if desired."
-  },
-  {
-    "objectID": "posts/obvious_completions.html#introduction",
-    "href": "posts/obvious_completions.html#introduction",
-    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
-    "section": "",
-    "text": "Much of mechanistic interpretability either focuses on toy tasks in toy models. 1 (cite a bunch of examples, transformer circuits, other toy work, sparse transformers, jermyn paper). Other work focuses on small datasets of realistic prompts applied to real-world large language model. (cite IOI, alpaca das, rome, acdc, greater-than, …).\nTo add a new approach, we would like to scale up interpretability methods to a large dataset of tasks focused on real models.\nTo that end, we’re sharing two datasets:\n\na dataset of token-bigram and token-trigram statistics from The Pile (CITE) including tables of one and two token prompts with their most likely completions.\nan input scanning dataset that uses the Pythia 2.8B model to determine which tokens are extremely predictive in context.\n\nThe construction of both datasets is unsupervised. The input scanning dataset covers ~100M tokens of The Pile and could be extended to the full dataset if desired."
-  },
-  {
-    "objectID": "posts/obvious_completions.html#bigrams-and-trigrams",
-    "href": "posts/obvious_completions.html#bigrams-and-trigrams",
-    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
-    "section": "Bigrams and Trigrams",
-    "text": "Bigrams and Trigrams\nWe process the entire deduplicated Pile for bigram and trigram counts. [link to the code for a further description of the construction of the dataset]…\nSome whitespace token bigrams will also tokenize as a single token. For example, with the GPT-NeoX tokenizer, \\n\\n\\t\\t is a token, \\t is a token and \\n\\n\\t\\t\\t is also token. This can cause problems when automatically tokenizing many prompts.\n\nTODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data."
-  },
-  {
-    "objectID": "posts/obvious_completions.html#input-scanning",
-    "href": "posts/obvious_completions.html#input-scanning",
-    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
-    "section": "Input scanning",
-    "text": "Input scanning\nAn unsupervised method for finding examples of a model’s predictive capabilities.\nWe scan through the pre-training corpus \\({t_0,...,t_N}\\) and compare the output of the model on a pair of prompts: - \\(p_0 = [t_i, ... t_{i + n}]\\) is a contiguous \\(n\\)-token prompt from the pre-training corpus. - \\(p_1 = [t_{i-1}, t_i, ... t_{i + n}]\\) is an \\((n+1)\\)-token prompt where an additional token, \\(t_{i-1}\\) has been added in the backwards direction in the text.\nWhen \\(M(p_1)\\) differs substantially from \\(M(p_0)\\), we capture the two prompts as a “task” that the model has succeeded at regardless of whether the model is correct or not. To be more precise, we accept the task if:\n\\[\\mathrm{JSD}(M(p_1), M(p_2)) &gt; 0.5\\]\nwhere JSD is the Jensen-Shannon Divergence. By focusing on tasks for which the addition of \\(t_{i - 1}\\) to the prompt had a large influence, we expect to find\n\nTODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data.\n\nTODO: Examples of input…"
-  },
-  {
-    "objectID": "posts/obvious_completions.html#what-were-using-these-datasets-for",
-    "href": "posts/obvious_completions.html#what-were-using-these-datasets-for",
-    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
-    "section": "What we’re using these datasets for?",
-    "text": "What we’re using these datasets for?\nThere’s a lot we want to do with this data.\n\nProducing a mechanistic map of a model’s internals:\n\nMapping out the features and circuits responsible for each task.\nAre there patterns to\nThis map will\n\nUsing the dataset as a benchmark for automated circuit identification algorithms like (ACDC, boundless DAS).\nLook for inputs that activate portions of the network for which we don’t have any activators yet.\nFinding examples of superposition in the wild. The number of tasks available via input scanning exceeds the number of neurons in Pythia 2.8B (TODO: how many?). Therefore, we should be able to find directions in activation space that interfere."
-  },
-  {
-    "objectID": "posts/obvious_completions.html#footnotes",
-    "href": "posts/obvious_completions.html#footnotes",
-    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nWe do not aim to criticize such work, only to contrast. There is clearly immense potential in toy model.↩︎"
+    "text": "[DRAFT] A catalog of several million tasks Pythia can do.\n\n\n\n\n\n\n\n\n\nJun 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nA Quarto Page Layout Example\n\n\n\n\n\n\n\n\n\nJun 9, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nvscode ipynb\n\n\n\n\n\n\n\n\n\nJun 9, 2023\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post1.html",
@@ -103,5 +54,68 @@
     "title": "A Quarto Page Layout Example",
     "section": "Margin Captions",
     "text": "Margin Captions\nWhen you include a figure constrained to the main column, you can choose to place the figure’s caption in the margin by using the cap-location chunk option. For example:\n\n\nCode\nx = np.random.normal(size=10000)\nplt.hist(x, bins=100)\nplt.show()\n\n\n\n\n\nFigure 4: A figure with a longer caption. The figure appears in the main column, but the caption is placed in the margin. Captions can even contain elements like a citation such as Xie, Allaire, and Grolemund (2018).\nXie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. “Tufte Handouts.” In R Markdown: The Definitive Guide, 137–46. Chapman; Hall/CRC. https://doi.org/10.1201/9781138359444-6."
+  },
+  {
+    "objectID": "posts/post2.html",
+    "href": "posts/post2.html",
+    "title": "vscode ipynb",
+    "section": "",
+    "text": "advice on using notebooks and vscode with quarto\nwriting from a jupyter notebook .ipynb instead of .qmd.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.random.normal(size=10000)\nplt.hist(x, bins=100)\nplt.show()\n\n\n\n\n\n\nFigure 1: graphhhh\n\n\n\n\n\nCode\nimport pandas as pd\niris = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv')\niris.sample(10)\n\n\n\n\n\n\n\nTable 1: Iris\n\n\n\nsepal_length\nsepal_width\npetal_length\npetal_width\nspecies\n\n\n\n\n135\n7.7\n3.0\n6.1\n2.3\nvirginica\n\n\n141\n6.9\n3.1\n5.1\n2.3\nvirginica\n\n\n78\n6.0\n2.9\n4.5\n1.5\nversicolor\n\n\n115\n6.4\n3.2\n5.3\n2.3\nvirginica\n\n\n114\n5.8\n2.8\n5.1\n2.4\nvirginica\n\n\n118\n7.7\n2.6\n6.9\n2.3\nvirginica\n\n\n121\n5.6\n2.8\n4.9\n2.0\nvirginica\n\n\n69\n5.6\n2.5\n3.9\n1.1\nversicolor\n\n\n112\n6.8\n3.0\n5.5\n2.1\nvirginica\n\n\n120\n6.9\n3.2\n5.7\n2.3\nvirginica"
+  },
+  {
+    "objectID": "posts/obvious_completions.html",
+    "href": "posts/obvious_completions.html",
+    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
+    "section": "",
+    "text": "Much of mechanistic interpretability either focuses on toy tasks in toy models. 1 (cite a bunch of examples, transformer circuits, other toy work, sparse transformers, jermyn paper). Other work focuses on small datasets of realistic prompts applied to real-world large language model. (cite IOI, alpaca das, rome, acdc, greater-than, …).\nTo add a new approach, we would like to scale up interpretability methods to a large dataset of tasks focused on real models.\nTo that end, we’re sharing two datasets:\n\na dataset of token-bigram and token-trigram statistics from The Pile (CITE) including tables of one and two token prompts with their most likely completions.\nan input scanning dataset that uses the Pythia 2.8B model to determine which tokens are extremely predictive in context.\n\nThe construction of both datasets is unsupervised. The input scanning dataset covers ~100M tokens of The Pile and could be extended to the full dataset if desired."
+  },
+  {
+    "objectID": "posts/obvious_completions.html#introduction",
+    "href": "posts/obvious_completions.html#introduction",
+    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
+    "section": "",
+    "text": "Much of mechanistic interpretability either focuses on toy tasks in toy models. 1 (cite a bunch of examples, transformer circuits, other toy work, sparse transformers, jermyn paper). Other work focuses on small datasets of realistic prompts applied to real-world large language model. (cite IOI, alpaca das, rome, acdc, greater-than, …).\nTo add a new approach, we would like to scale up interpretability methods to a large dataset of tasks focused on real models.\nTo that end, we’re sharing two datasets:\n\na dataset of token-bigram and token-trigram statistics from The Pile (CITE) including tables of one and two token prompts with their most likely completions.\nan input scanning dataset that uses the Pythia 2.8B model to determine which tokens are extremely predictive in context.\n\nThe construction of both datasets is unsupervised. The input scanning dataset covers ~100M tokens of The Pile and could be extended to the full dataset if desired."
+  },
+  {
+    "objectID": "posts/obvious_completions.html#bigrams-and-trigrams",
+    "href": "posts/obvious_completions.html#bigrams-and-trigrams",
+    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
+    "section": "Bigrams and Trigrams",
+    "text": "Bigrams and Trigrams\nWe process the entire deduplicated Pile for bigram and trigram counts. [link to the code for a further description of the construction of the dataset]…\nSome whitespace token bigrams will also tokenize as a single token. For example, with the GPT-NeoX tokenizer, \\n\\n\\t\\t is a token, \\t is a token and \\n\\n\\t\\t\\t is also token. This can cause problems when automatically tokenizing many prompts.\n\nTODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data."
+  },
+  {
+    "objectID": "posts/obvious_completions.html#input-scanning",
+    "href": "posts/obvious_completions.html#input-scanning",
+    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
+    "section": "Input scanning",
+    "text": "Input scanning\nAn unsupervised method for finding examples of a model’s predictive capabilities.\nWe scan through the pre-training corpus \\({t_0,...,t_N}\\) and compare the output of the model on a pair of prompts: - \\(p_0 = [t_i, ... t_{i + n}]\\) is a contiguous \\(n\\)-token prompt from the pre-training corpus. - \\(p_1 = [t_{i-1}, t_i, ... t_{i + n}]\\) is an \\((n+1)\\)-token prompt where an additional token, \\(t_{i-1}\\) has been added in the backwards direction in the text.\nWhen \\(M(p_1)\\) differs substantially from \\(M(p_0)\\), we capture the two prompts as a “task” that the model has succeeded at regardless of whether the model is correct or not. To be more precise, we accept the task if:\n\\[\\mathrm{JSD}(M(p_1), M(p_2)) &gt; 0.5\\]\nwhere JSD is the Jensen-Shannon Divergence. By focusing on tasks for which the addition of \\(t_{i - 1}\\) to the prompt had a large influence, we expect to find\n\nTODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data.\n\nTODO: Examples of input…\nTODO: link to the huggingface pages."
+  },
+  {
+    "objectID": "posts/obvious_completions.html#what-were-using-these-datasets-for",
+    "href": "posts/obvious_completions.html#what-were-using-these-datasets-for",
+    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
+    "section": "What we’re using these datasets for?",
+    "text": "What we’re using these datasets for?\nThere’s a lot we want to do with this data.\n\nProducing a mechanistic map of a model’s internals:\n\nMapping out the features and circuits responsible for each task.\nAre there patterns to\nThis map will\n\nUsing the dataset as a benchmark for automated circuit identification algorithms like (ACDC, boundless DAS).\nLook for inputs that activate portions of the network for which we don’t have any activators yet.\nFinding examples of superposition in the wild. The number of tasks available via input scanning exceeds the number of neurons in Pythia 2.8B (TODO: how many?). Therefore, we should be able to find directions in activation space that interfere."
+  },
+  {
+    "objectID": "posts/obvious_completions.html#likely-bigram-completions",
+    "href": "posts/obvious_completions.html#likely-bigram-completions",
+    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
+    "section": "Likely bigram completions",
+    "text": "Likely bigram completions\nThe table below shows the bigram completions in The Pile sorted by their frequency of occurence: - sum_count: the number of times the first two tokens of the trigram occur in The Pile. - frac_max: the fraction of instances where the third token is the completion of the trigram. - token#: the tokens of the bigram."
+  },
+  {
+    "objectID": "posts/obvious_completions.html#likely-trigram-completions",
+    "href": "posts/obvious_completions.html#likely-trigram-completions",
+    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
+    "section": "Likely trigram completions",
+    "text": "Likely trigram completions\nThe table below shows 100,000 of the most predictive trigrams in The Pile sorted by their frequency of occurence: - sum_count: the number of times the first two tokens of the trigram occur in The Pile. - frac_max: the fraction of instances where the third token is the completion of the trigram. - token#: the tokens of the trigram."
+  },
+  {
+    "objectID": "posts/obvious_completions.html#footnotes",
+    "href": "posts/obvious_completions.html#footnotes",
+    "title": "[DRAFT] A catalog of several million tasks Pythia can do.",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nWe do not aim to criticize such work, only to contrast. There is clearly immense potential in toy model.↩︎"
   }
 ]
