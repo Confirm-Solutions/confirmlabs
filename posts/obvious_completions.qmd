@@ -8,9 +8,13 @@ format:
   ipynb: default
 bibliography: skeleton.bib
 jupyter: python3
-execute:
-  echo: false
 ---
+
+## TODO:
+
+- List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data.
+- Examples of input...
+- link to the huggingface pages.
 
 ## Introduction
 
@@ -45,8 +49,6 @@ example, with the GPT-NeoX tokenizer, `\n\n\t\t` is a token, `\t` is a token
 *and* `\n\n\t\t\t` is also token. This can cause problems when automatically
 tokenizing many prompts.
 
-- TODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data.
-
 ## Input scanning
 
 An unsupervised method for finding examples of a model's predictive capabilities.
@@ -66,12 +68,6 @@ correct or not. To be more precise, we accept the task if:
 $$\mathrm{JSD}(M(p_1), M(p_2)) > 0.5$$
 
 where JSD is the [Jensen-Shannon Divergence](https://en.wikipedia.org/wiki/Jensen–Shannon_divergence). By focusing on tasks for which the addition of $t_{i - 1}$ to the prompt had a large influence, we expect to find 
-
-- TODO: List lots of facts about the data: number of rows, number of bigrams/trigrams, percent that are highly predictive. a few graphs of the data.
-
-TODO: Examples of input...
-
-TODO: link to the huggingface pages.
 
 ## What we're using these datasets for?
 There's a lot we want to do with this data. 
@@ -93,6 +89,7 @@ There's a lot we want to do with this data.
 ## Likely bigram completions
 
 The table below shows the bigram completions in The Pile sorted by their frequency of occurence:
+
 - `sum_count`: the number of times the first two tokens of the trigram occur in The Pile.
 - `frac_max`: the fraction of instances where the third token is the completion of the trigram.
 - `token#`: the tokens of the bigram.
@@ -103,6 +100,7 @@ The table below shows the bigram completions in The Pile sorted by their frequen
 ## Likely trigram completions
 
 The table below shows 100,000 of the most predictive trigrams in The Pile sorted by their frequency of occurence:
+
 - `sum_count`: the number of times the first two tokens of the trigram occur in The Pile.
 - `frac_max`: the fraction of instances where the third token is the completion of the trigram.
 - `token#`: the tokens of the trigram.
