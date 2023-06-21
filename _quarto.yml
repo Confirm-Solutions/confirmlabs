@@ -23,7 +23,7 @@ filters:
 lightbox: auto
 
 execute:
-  freeze: auto
+  freeze: false
 
 resources:
   - CNAME 
