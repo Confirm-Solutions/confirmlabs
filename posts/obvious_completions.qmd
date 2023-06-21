@@ -98,7 +98,7 @@ The table below shows the bigram completions in The Pile sorted by their frequen
 - `token#`: the tokens of the bigram.
 
 <iframe width="100%" height="492" frameborder="0"
-  src="https://observablehq.com/embed/@confirmlabs/ngrams@97?cells=bigrams"></iframe>
+  src="https://observablehq.com/embed/@confirmlabs/ngrams?cells=bigrams"></iframe>
 
 ## Likely trigram completions
 
@@ -108,4 +108,4 @@ The table below shows 100,000 of the most predictive trigrams in The Pile sorted
 - `token#`: the tokens of the trigram.
 
 <iframe width="100%" height="492" frameborder="0"
-  src="https://observablehq.com/embed/@confirmlabs/ngrams@97?cells=trigrams"></iframe>
+  src="https://observablehq.com/embed/@confirmlabs/ngrams?cells=trigrams"></iframe>
