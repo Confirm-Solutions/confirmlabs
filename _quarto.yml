@@ -17,13 +17,14 @@ format:
     toc: true
     toc-location: left
     code-fold: true
+    theme: cosmo
 
 filters:
    - lightbox
 lightbox: auto
 
 execute:
-  freeze: false
+  freeze: auto
 
 resources:
   - CNAME 
