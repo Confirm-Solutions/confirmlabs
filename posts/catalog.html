@@ -8,7 +8,7 @@
 
 <meta name="author" content="T. Ben Thompson">
 <meta name="author" content="Michael Sklar">
-<meta name="dcterms.date" content="2023-06-24">
+<meta name="dcterms.date" content="2023-06-25">
 
 <title>Confirm - A catalog of several millions tasks Pythia can do.</title>
 <style>
@@ -128,7 +128,7 @@ div.csl-indent {
   <ul>
   <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The data</a></li>
   <li><a href="#bigrams-and-trigrams" id="toc-bigrams-and-trigrams" class="nav-link" data-scroll-target="#bigrams-and-trigrams">Bigrams and Trigrams</a></li>
-  <li><a href="#prompt-scanning" id="toc-prompt-scanning" class="nav-link" data-scroll-target="#prompt-scanning">Prompt scanning</a></li>
+  <li><a href="#first-token-deletion" id="toc-first-token-deletion" class="nav-link" data-scroll-target="#first-token-deletion">First token deletion</a></li>
   <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="catalog.out.ipynb" download="catalog.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
@@ -160,7 +160,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 24, 2023</p>
+      <p class="date">June 25, 2023</p>
     </div>
   </div>
   
@@ -170,25 +170,29 @@ div.csl-indent {
 
 </header>
 
-<p>We’re sharing several datasets that we hope will be useful for language model interpretability:</p>
+<p>We’re sharing several datasets that we hope will be useful for language model interpretability.</p>
 <ol type="1">
-<li>datasets of <strong>token-bigram and token-trigram statistics</strong> from <a href="https://pile.eleuther.ai">The Pile</a> <span class="citation" data-cites="pile">(<a href="#ref-pile" role="doc-biblioref">Gao et al. 2020</a>)</span> including tables of one and two token prompts with their most likely completions.</li>
-<li>an <strong>prompt scanning</strong> dataset constructed by differencing the outputs of Pythia-2.8B <span class="citation" data-cites="biderman2023pythia">(<a href="#ref-biderman2023pythia" role="doc-biblioref">Biderman et al. 2023</a>)</span> between four and five token prompts. This method highlights which tokens are extremely predictive in context.</li>
+<li><strong>Token-bigram and token-trigram prediction</strong>: a dataset of n-gram statistics from <a href="https://pile.eleuther.ai">The Pile</a> <span class="citation" data-cites="pile">(<a href="#ref-pile" role="doc-biblioref">Gao et al. 2020</a>)</span> including tables of one and two token prompts with their most likely completions. One of the simplest “tasks” for a language model is bigram completion.
+<ul>
+<li>for example, during training, 99.8% of the time the model sees <code>"    telome"</code>, the correct next token is <code>"res"</code>.</li>
+</ul></li>
+<li><strong>First token deletion</strong>: a dataset constructed by differencing the outputs of Pythia-2.8B <span class="citation" data-cites="biderman2023pythia">(<a href="#ref-biderman2023pythia" role="doc-biblioref">Biderman et al. 2023</a>)</span> between four and five token prompts. This method highlights tokens that are extremely predictive in context.
+<ul>
+<li>for example, when prompted with <code>", or common table"</code>, the model predicts <code>" expression"</code> with probability 0.37. But, if we prompt with <code>" chloride, or common table"</code> and the model predicts <code>" salt"</code> with probability 0.99.</li>
+</ul></li>
 </ol>
 <section id="the-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-data">The data</h2>
-<p>In following sections we will give details on the construction and statistics of these datasets. But before continuing, here are some data previews:</p>
+<p>In following sections we will give details on the construction and statistics of these datasets. But before continuing, we share some interactive data previews:</p>
 <ul>
-<li><strong>Scan</strong>: the first 25000 rows of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_scan_4">pile_scan_4</a>.</li>
-<li><strong>Bigrams</strong>: the entirety of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_bigrams">pile_top_bigrams</a>.</li>
-<li><strong>Trigrams</strong>: the first 25000 rows of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_trigrams">pile_top_trigrams</a>.</li>
+<li><strong>Deletion</strong>: the first 25000 rows of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_scan_4">pile_scan_4</a>.</li>
+<li><strong>Bigrams</strong>: the entirety of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_bigrams">pile_top_bigrams</a>, which contains bigrams with suffix probability greater than 50%</li>
+<li><strong>Trigrams</strong>: the first 25000 rows of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_trigrams">pile_top_trigrams</a>, which contains trigrams with suffix probability greater than 50% and count greater than 1000.</li>
 </ul>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><strong>Scan</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><strong>Bigrams</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><strong>Trigrams</strong></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><strong>Deletion</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><strong>Bigrams</strong></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><strong>Trigrams</strong></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p><strong>Prompt scanning:</strong> Consider the prompt, <code>", or common table"</code>. Given this prompt, Pythia-2.8B predicts the most likely next token is <code>" expression"</code> with probability 0.37. <a href="https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL#Common_table_expression">It thinks we might be talking about SQL.</a></p>
-<p>However, suppose we provide an additional token of context in the backwards directions with the prompt, <code>" chloride, or common table"</code>. Then, the model correctly predicts <code>" salt"</code> with probability 0.99.</p>
 <p>The columns of the table below:</p>
 <ul>
 <li><code>text</code>: two prompts provided. The additional token of backwards context is surrounded by square brackets. The example above would be written <code>"[_chloride],_or_common_table"</code>.</li>
@@ -495,19 +499,20 @@ div.csl-indent {
 <p>Usage notes:</p>
 <ul>
 <li>Because the byte-pair encoding tokenizer from GPT-NeoX <span class="citation" data-cites="black-etal-2022-gpt">(<a href="#ref-black-etal-2022-gpt" role="doc-biblioref">Black et al. 2022</a>)</span> was trained on The Pile, there are no single tokens in The Pile where the subsequent token is 100% predictable. However, there are many trigrams that are 100% predictable.</li>
-<li>Some whitespace token bigrams will also tokenize as a single token. For example, with the GPT-NeoX tokenizer, <code>"\n\n\t\t"</code> is a token, <code>"\t"</code> is a token <em>and</em> <code>"\n\n\t\t\t"</code> is also token. This can create problems when automatically tokenizing many prompts because almost all concatenated bigrams will tokenize to two tokens but a few whitespace-related bigrams will tokenize to one token. We have not removed these bigrams from the dataset.</li>
+<li>Some whitespace token bigrams will also tokenize as a single token. For example, with the GPT-NeoX tokenizer, <code>"\n\n\t\t"</code> is a token, <code>"\t"</code> is a token <em>and</em> <code>"\n\n\t\t\t"</code> is also token. It’s important to be aware of this when automatically tokenizing many prompts because almost all concatenated bigrams will tokenize to two tokens but a few whitespace-related bigrams will tokenize to one token. We have not removed these bigrams from the dataset. This white space tokenization is discussed in Appendix F of <span class="citation" data-cites="black-etal-2022-gpt">Black et al. (<a href="#ref-black-etal-2022-gpt" role="doc-biblioref">2022</a>)</span>.</li>
 </ul>
 </section>
-<section id="prompt-scanning" class="level2">
-<h2 class="anchored" data-anchor-id="prompt-scanning">Prompt scanning</h2>
-<p>Prompt scanning is an unsupervised method for finding examples of a model’s predictive capabilities. We scan through the pre-training corpus <span class="math inline">\({t_0,...,t_N}\)</span> and compare the output of the model on pairs of prompts:</p>
+<section id="first-token-deletion" class="level2">
+<h2 class="anchored" data-anchor-id="first-token-deletion">First token deletion</h2>
+<p>If deleting the first token of a prompt gives a dramatically different output from a language model, then something interpretable may be going on. For example, consider the prompt, <code>", or common table"</code>. Given this prompt, Pythia-2.8B predicts the most likely next token is <code>" expression"</code> with probability 0.37. Next, we provide an additional token of context in the backwards directions with the prompt, <code>" chloride, or common table"</code>. Then, the model correctly predicts <code>" salt"</code> with probability 0.99.</p>
+<p>We scan through the pre-training corpus <span class="math inline">\({t_0,...,t_N}\)</span> and compare the output of the model on pairs of prompts:</p>
 <ul>
 <li><span class="math inline">\(p_0 = [t_i, ... t_{i + n}]\)</span> is a contiguous <span class="math inline">\(n\)</span>-token prompt from the pre-training corpus.</li>
 <li><span class="math inline">\(p_1 = [t_{i-1}, t_i, ... t_{i + n}]\)</span> is an <span class="math inline">\((n+1)\)</span>-token prompt where an additional token, <span class="math inline">\(t_{i-1}\)</span> has been added in the backwards direction in the text.</li>
 </ul>
 <p>Suppose <span class="math inline">\(M(p)\)</span> is a model than outputs a probability distribution over output tokens. When <span class="math inline">\(M(p_1)\)</span> differs substantially from <span class="math inline">\(M(p_0)\)</span>, we capture the two prompts as a “task”. To be more precise, we accept the task if:</p>
 <p><span class="math display">\[\mathrm{JSD}(M(p_0), M(p_1)) &gt; 0.5 ~~~~\mathrm{and}~~~~ \max_{i} M(p_1)_i &gt; 0.5\]</span></p>
-<p>where JSD is the <a href="https://en.wikipedia.org/wiki/Jensen–Shannon_divergence">Jensen-Shannon Divergence</a>. By focusing on tasks for which the addition of <span class="math inline">\(t_{i - 1}\)</span> to the prompt had a large influence and resulted in a highly likely token, we capture tasks that the model is confidently completing. Note that the true next token <span class="math inline">\(t_{i + n + 1}\)</span> does not factor into these criteria and therefore the correctness of the model’s predictions does not affect whether we consider the model to successfully be completing a task.</p>
+<p>where JSD is the <a href="https://en.wikipedia.org/wiki/Jensen–Shannon_divergence">Jensen-Shannon Divergence</a>. By focusing on tasks for which the addition of <span class="math inline">\(t_{i - 1}\)</span> to the prompt had a large influence and resulted in a highly likely output token, we capture tasks that the model is confidently completing. Note that the true next token <span class="math inline">\(t_{i + n + 1}\)</span> does not factor into these criteria and therefore the correctness of the model’s predictions does not affect whether we consider the model to successfully be completing a task.</p>
 <p>We share 1,874,497 tasks produced by prompt scanning with Pythia-2.8B for every sliding 5-token prompt in the first 112.5M tokens of the Pile. The dataset is available on Huggingface: <a href="https://huggingface.co/datasets/Confirm-Labs/pile_scan_4">pile_scan_4</a></p>
 <div class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
@@ -541,13 +546,13 @@ Gao, Leo, Stella Biderman, Sid Black, Laurence Golding, Travis Hoppe, Charles Fo
 </div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{ben thompson2023,
   author = {Ben Thompson, T. and Sklar, Michael},
   title = {A Catalog of Several Millions Tasks {Pythia} Can Do.},
-  date = {2023-06-24},
+  date = {2023-06-25},
   url = {https://confirmlabs.org/posts/catalog.html},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-ben thompson2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 Ben Thompson, T., and Michael Sklar. 2023. <span>“A Catalog of Several
-Millions Tasks Pythia Can Do.”</span> June 24, 2023. <a href="https://confirmlabs.org/posts/catalog.html">https://confirmlabs.org/posts/catalog.html</a>.
+Millions Tasks Pythia Can Do.”</span> June 25, 2023. <a href="https://confirmlabs.org/posts/catalog.html">https://confirmlabs.org/posts/catalog.html</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -783,7 +788,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":true,"descPosition":"bottom"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":true,"openEffect":"zoom","selector":".lightbox"});</script>
 
 
 
