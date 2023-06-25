@@ -4,4 +4,5 @@ listing:
   sort: "date desc"
   type: grid
   categories: false
+citation: false
 ---

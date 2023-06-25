@@ -12,12 +12,18 @@ website:
       - href: index.qmd
         text: Confirm
 
+citation: true
+
+google-scholar: true
+
 format:
   html:
     css: styles.css
     toc: true
     toc-location: left
     theme: cosmo
+    grid:
+      margin-width: 350px
 
 filters:
    - lightbox
