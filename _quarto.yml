@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Confirm"
+  site-url: https://confirmlabs.org
   navbar:
     title: false
     background: white
@@ -16,7 +17,6 @@ format:
     css: styles.css
     toc: true
     toc-location: left
-    code-fold: true
     theme: cosmo
 
 filters:
