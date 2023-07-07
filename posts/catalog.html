@@ -188,15 +188,15 @@ div.csl-indent {
 </ul></li>
 <li><strong>First token deletion</strong>: a dataset constructed by differencing the outputs of Pythia-2.8B <span class="citation" data-cites="biderman2023pythia">(<a href="#ref-biderman2023pythia" role="doc-biblioref">Biderman et al. 2023</a>)</span> between four and five token prompts. This method highlights tokens that are extremely predictive in context.
 <ul>
-<li>for example, when prompted with <code>", or common table"</code>, the model predicts <code>" expression"</code> with probability 0.37. But, if we prompt with <code>" chloride, or common table"</code> and the model predicts <code>" salt"</code> with probability 0.99.</li>
+<li>for example, when prompted with <code>", or common table"</code>, the model predicts <code>" expression"</code> (<a href="https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL#Common_table_expression">CTE</a>) with probability 0.37. But, if we prompt with <code>" chloride, or common table"</code>, then the model predicts <code>" salt"</code> with probability 0.99.</li>
 </ul></li>
 </ol>
 <section id="the-data" class="level2">
 <h2 class="anchored" data-anchor-id="the-data">The data</h2>
-<p>In following sections we will give details on the construction and statistics of these datasets. But before continuing, we share some interactive data previews:</p>
+<p>In following sections we will give details on the construction and statistics of these datasets. Before continuing, we share some interactive data previews:</p>
 <ul>
 <li><strong>Deletion</strong>: the first 25000 rows of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_scan_4">pile_scan_4</a>.</li>
-<li><strong>Bigrams</strong>: the entirety of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_bigrams">pile_top_bigrams</a>, which contains bigrams with suffix probability greater than 50%</li>
+<li><strong>Bigrams</strong>: the entirety of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_bigrams">pile_top_bigrams</a>, which contains bigrams with suffix probability greater than 50%.</li>
 <li><strong>Trigrams</strong>: the first 25000 rows of <a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_trigrams">pile_top_trigrams</a>, which contains trigrams with suffix probability greater than 50% and count greater than 1000.</li>
 </ul>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -205,7 +205,7 @@ div.csl-indent {
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>The columns of the table below:</p>
 <ul>
-<li><code>text</code>: two prompts provided. The additional token of backwards context is surrounded by square brackets. The example above would be written <code>"[_chloride],_or_common_table"</code>.</li>
+<li><code>text</code>: the two prompts provided. The additional token of backwards context is surrounded by square brackets. The example in the introduction would be written <code>"[_chloride],_or_common_table"</code>.</li>
 <li><code>token_short</code>: the most likely next token predicted by Pythia-2.8B for the <em>four</em> token prompt.</li>
 <li><code>token_long</code>: the most likely next token predicted by Pythia-2.8B for the <em>five</em> token prompt.</li>
 <li><code>p_short</code>: the probability Pythia-2.8B assigns to <code>token_short</code>.</li>
@@ -294,10 +294,10 @@ div.csl-indent {
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>The table below shows bigram completions in The Pile sorted by the frequency of occurence of the prefix token:</p>
 <ul>
+<li><code>token#</code>: the tokens of the bigram.</li>
 <li><code>sum_count</code>: the number of times the first token of the bigram occurs in The Pile.</li>
 <li><code>frac_max</code>: the fraction of first token appearances that are followed by the most common bigram completion. For example, 50.3% of the time the model sees <code>" need"</code>, the correct next token is <code>" to"</code>.</li>
 <li><code>p_2.8b</code>: the probability Pythia-2.8B assigns to the most likely completion token when prompted with just the prefix token.</li>
-<li><code>token#</code>: the tokens of the bigram.</li>
 </ul>
 <p>Note:</p>
 <ul>
@@ -379,10 +379,10 @@ div.csl-indent {
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p>The table below shows trigram completions in The Pile sorted by the frequency of occurence of the prefix bigram:</p>
 <ul>
+<li><code>token#</code>: the tokens of the trigram.</li>
 <li><code>sum_count</code>: the number of times the prefix bigram occurs in The Pile.</li>
 <li><code>frac_max</code>: the fraction of bigram appearances that are followed by the most common third token. For example, when prompted with the tokens <code>["://", "www"]</code>, 99.4% of the time, the next token is <code>"."</code>.</li>
 <li><code>p_2.8b</code>: the probability Pythia-2.8B assigns to the most likely completion token when prompted with the prefix bigram.</li>
-<li><code>token#</code>: the tokens of the trigram.</li>
 </ul>
 <p>Note:</p>
 <ul>
@@ -469,7 +469,7 @@ div.csl-indent {
 <section id="bigrams-and-trigrams" class="level2">
 <h2 class="anchored" data-anchor-id="bigrams-and-trigrams">Bigrams and Trigrams</h2>
 <p>To construct bigram and trigram statistics, we process <a href="https://huggingface.co/datasets/EleutherAI/the_pile_deduplicated">the entire deduplicated Pile</a>.</p>
-<p>We share six datasets on Huggingface. Descriptions of the datasets are available in the linked model cards:</p>
+<p>We share six datasets on Huggingface. Descriptions of the datasets are available in the linked dataset cards:</p>
 <ul>
 <li><a href="https://huggingface.co/datasets/Confirm-Labs/pile_bigrams">pile_bigrams</a>: Raw bigram statistics:
 <ul>
@@ -477,11 +477,11 @@ div.csl-indent {
 </ul></li>
 <li><a href="https://huggingface.co/datasets/Confirm-Labs/pile_bigram_prefixes">pile_bigram_prefixes</a>: All bigram prefixes with their most common completion token.
 <ul>
-<li>50,054 unique bigram prefixes (equivalent to tokens/unigrams).</li>
+<li>50,054 unique bigram prefixes (one row for each unique token).</li>
 </ul></li>
 <li><a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_bigrams">pile_top_bigrams</a>: Those bigram prefixes for which the most common completion has &gt; 50% probability. We add Pythia’s probability of the most frequent completion for each Pythia model.
 <ul>
-<li>3,448 such bigram prefixes. All of these are available to browse above.</li>
+<li>3,448 such bigram prefixes. All of these are available to browse on this page above.</li>
 </ul></li>
 <li><a href="https://huggingface.co/datasets/Confirm-Labs/pile_trigrams">pile_trigrams</a>: Raw trigram statistics.
 <ul>
@@ -493,7 +493,7 @@ div.csl-indent {
 </ul></li>
 <li><a href="https://huggingface.co/datasets/Confirm-Labs/pile_top_trigrams">pile_top_trigrams</a>: Those trigram prefixes for which the most common completion has &gt; 50% probability and where the prefix occurs more than 1000 times in The Pile. We add Pythia’s probability of the most frequent completion for each Pythia model.
 <ul>
-<li>1,542,074 such trigram prefixes. The top 25k are available to browse above.</li>
+<li>1,542,074 such trigram prefixes. The top 25k are available to browse on this page above.</li>
 </ul></li>
 </ul>
 <p>Below, we show the memorization rates for each Pythia model on the <code>pile_top_bigrams</code> and <code>pile_top_trigrams</code> datasets. Since these datasets have been filtered to cases where the most common completion has &gt; 50% probability, we hope to see models predicting the most common completion with high probability. Larger models perform better, but even Pythia-12B is miscalibrated on 20% of the bigrams and 45% of the trigrams when we ask for prediction of <span class="math inline">\(p \geq 0.45\)</span>.</p>
@@ -522,7 +522,7 @@ div.csl-indent {
 </ul>
 <p>Suppose <span class="math inline">\(M(p)\)</span> is a model than outputs a probability distribution over output tokens. When <span class="math inline">\(M(p_1)\)</span> differs substantially from <span class="math inline">\(M(p_0)\)</span>, we capture the two prompts as a “task”. To be more precise, we accept the task if:</p>
 <p><span class="math display">\[\mathrm{JSD}(M(p_0), M(p_1)) &gt; 0.5 ~~~~\mathrm{and}~~~~ \max_{i} M(p_1)_i &gt; 0.5\]</span></p>
-<p>where JSD is the <a href="https://en.wikipedia.org/wiki/Jensen–Shannon_divergence">Jensen-Shannon Divergence</a>. This criterion means that we focus on tasks for which the addition of <span class="math inline">\(t_{i-1}\)</span> to the prompt has a large influence and results in a confident prediction. Note that the true next token <span class="math inline">\(t_{i + n + 1}\)</span> does not factor into these criteria and therefore the correctness of the model’s predictions does not affect whether we consider the model to successfully be completing a task.</p>
+<p>where JSD is the <a href="https://en.wikipedia.org/wiki/Jensen–Shannon_divergence">Jensen-Shannon Divergence</a>. This criterion means that we focus on tasks for which the addition of <span class="math inline">\(t_{i-1}\)</span> to the prompt has a large influence and results in a confident prediction. Note that the true next token <span class="math inline">\(t_{i + n + 1}\)</span> does not factor into these criteria and therefore the correctness of the model’s predictions does not affect whether we consider the model to be “completing a task”.</p>
 <p>We share 1,874,497 tasks produced by prompt scanning with Pythia-2.8B for every sliding 5-token prompt in the first 112.5M tokens of the Pile. The dataset is available on Huggingface: <a href="https://huggingface.co/datasets/Confirm-Labs/pile_scan_4">pile_scan_4</a></p>
 <div class="cell">
 <div class="cell-output cell-output-display">
@@ -798,7 +798,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});</script>
 
 
 
