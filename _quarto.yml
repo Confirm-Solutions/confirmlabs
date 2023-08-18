@@ -13,6 +13,8 @@ website:
         text: Confirm
 
 citation: true
+link-citations: true
+csl: ieee.csl
 
 google-scholar: true
 
