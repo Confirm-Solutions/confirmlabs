@@ -41,7 +41,7 @@ Recommended pre-reading:
 - [An Interpretability Illusion for Activation Patching of Arbitrary Subspaces](https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of). 
 - The corresponding [ICLR paper, “Is This the Subspace You Are Looking For?](https://openreview.net/forum?id=Ebt7JgMHv1)”
 
-__
+------
 
 This post is motivated by Lange, Makelov, and Nanda's LessWrong post [Interpretability Illusion for Activation Patching](https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of) and [ICLR paper](https://openreview.net/forum?id=Ebt7JgMHv1). They study [Geiger et al's DAS](https://arxiv.org/abs/2303.02536) method, which uses optimization to identify an abstracted causal model with a small subset of dimensions in a neural network's residual stream or internal MLP layer. Their results show that DAS can, depending on the situation, turn up both "correct" and "spurious" findings on the train-set. From the investigations in the [ICLR paper](https://openreview.net/forum?id=Ebt7JgMHv1) and conversations with a few researchers, my understanding is these "spurious" directions have not performed well on held-out generalization sets, so in practice it is easy to distinguish the "illusions" from "real effects". But, I am interested in developing even stronger optimize-to-interpret methods. With more powerful optimizers, illusion effects should be even stronger, and competition from spurious signals may make true signals harder to locate in training. So, here are 6 possible ways to fight against the interpretability illusion. Most of them can be tried in combination.
 
