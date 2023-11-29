@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Confirm",
+    "section": "",
+    "text": "A catalog of several million tasks Pythia can do.\n\n\n\n\n\n\nT. Ben Thompson, Michael Sklar\n\n\nJun 25, 2023\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "posts/catalog.html",
     "href": "posts/catalog.html",
     "title": "A catalog of several million tasks Pythia can do.",
@@ -33,12 +40,5 @@
     "title": "A catalog of several million tasks Pythia can do.",
     "section": "GitHub",
     "text": "GitHub\nThe code to reproduce the datasets here is available at: https://github.com/Confirm-Solutions/catalog"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Confirm",
-    "section": "",
-    "text": "A catalog of several million tasks Pythia can do.\n\n\n\n\n\n\nT. Ben Thompson, Michael Sklar\n\n\nJun 25, 2023\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

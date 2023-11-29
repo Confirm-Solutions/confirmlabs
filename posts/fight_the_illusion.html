@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-11-28">
+
+<title>Confirm - 6 Ways to Fight the Interpretability Illusion</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta name="citation_title" content="6 Ways to Fight the Interpretability Illusion">
+<meta name="citation_publication_date" content="2023-11-28">
+<meta name="citation_cover_date" content="2023-11-28">
+<meta name="citation_year" content="2023">
+<meta name="citation_online_date" content="2023-11-28">
+<meta name="citation_fulltext_html_url" content="https://confirmlabs.org/posts/fight_the_illusion.html">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=GPT-NeoX-20B: An open-source autoregressive language model;,citation_abstract=We introduce GPT-NeoX-20B, a 20 billion parameter autoregressive language model trained on the Pile, whose weights will be made freely and openly available to the public through a permissive license. It is, to the best of our knowledge, the largest dense autoregressive model that has publicly available weights at the time of submission. In this work, we describe GPT-NeoX-20B’s architecture and training, and evaluate its performance. We open-source the training and evaluation code, as well as the model weights, at https://github.com/EleutherAI/gpt-neox.;,citation_author=Sidney Black;,citation_author=Stella Biderman;,citation_author=Eric Hallahan;,citation_author=Quentin Anthony;,citation_author=Leo Gao;,citation_author=Laurence Golding;,citation_author=Horace He;,citation_author=Connor Leahy;,citation_author=Kyle McDonell;,citation_author=Jason Phang;,citation_author=Michael Pieler;,citation_author=Usvsn Sai Prashanth;,citation_author=Shivanshu Purohit;,citation_author=Laria Reynolds;,citation_author=Jonathan Tow;,citation_author=Ben Wang;,citation_author=Samuel Weinbach;,citation_publication_date=2022-05;,citation_cover_date=2022-05;,citation_year=2022;,citation_fulltext_html_url=https://aclanthology.org/2022.bigscience-1.9;,citation_doi=10.18653/v1/2022.bigscience-1.9;,citation_conference_title=Proceedings of BigScience episode #5 – workshop on challenges &amp;amp;amp; perspectives in creating large language models;,citation_conference=Association for Computational Linguistics;">
+<meta name="citation_reference" content="citation_title=The Pile: An 800GB dataset of diverse text for language modeling;,citation_author=Leo Gao;,citation_author=Stella Biderman;,citation_author=Sid Black;,citation_author=Laurence Golding;,citation_author=Travis Hoppe;,citation_author=Charles Foster;,citation_author=Jason Phang;,citation_author=Horace He;,citation_author=Anish Thite;,citation_author=Noa Nabeshima;,citation_author=Shawn Presser;,citation_author=Connor Leahy;,citation_publication_date=2020;,citation_cover_date=2020;,citation_year=2020;,citation_journal_title=arXiv preprint arXiv:2101.00027;">
+<meta name="citation_reference" content="citation_title=Pythia: A suite for analyzing large language models across training and scaling;,citation_author=Stella Biderman;,citation_author=Hailey Schoelkopf;,citation_author=Quentin Anthony;,citation_author=Herbie Bradley;,citation_author=Kyle O’Brien;,citation_author=Eric Hallahan;,citation_author=Mohammad Aflah Khan;,citation_author=Shivanshu Purohit;,citation_author=USVSN Sai Prashanth;,citation_author=Edward Raff;,citation_author=Aviya Skowron;,citation_author=Lintang Sutawika;,citation_author=Oskar Wal;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://arxiv.org/abs/2304.01373;">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Confirm</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="fight_the_illusion.out.ipynb" download="fight_the_illusion.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">6 Ways to Fight the Interpretability Illusion</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Michael Sklar </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 28, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+
+<!-----
+
+
+
+Conversion time: 0.504 seconds.
+
+
+Using this Markdown file:
+
+1. Paste this output into your source file.
+2. See the notes and action items below regarding this conversion run.
+3. Check the rendered output (headings, lists, code blocks, tables) for proper
+   formatting and use a linkchecker before you publish this page.
+
+Conversion notes:
+
+* Docs to Markdown version 1.0β35
+* Tue Nov 28 2023 15:52:28 GMT-0800 (PST)
+* Source doc: 6 ways to fight the Interpretability illusion
+----->
+<p>Recommended pre-reading:</p>
+<p>Atticus Geiger’s <a href="https://arxiv.org/abs/2303.02536">DAS</a> and <a href="https://arxiv.org/pdf/2305.08809.pdf">Boundless DAS</a>. Lesswrong post <a href="https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of">An Interpretability Illusion for Activation Patching of Arbitrary Subspaces</a>. Corresponding <a href="https://openreview.net/forum?id=Ebt7JgMHv1">ICLR paper, “Is This the Subspace You Are Looking For?</a>”</p>
+<p>__<br>
+<br>
+This post is motivated by Lange, Makelov, and Nanda’s lesswrong post <a href="https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of">Interpretability Illusion for Activation Patching</a> and <a href="https://openreview.net/forum?id=Ebt7JgMHv1">ICLR paper</a>. They study Geiger et al’s <a href="https://arxiv.org/abs/2303.02536">DAS</a> method, which uses optimization to identify an abstracted causal model with a small subset of dimensions in a neural network’s residual stream or internal MLP layer. Their results show that DAS can, depending on the situation, turn up both “correct” and spurious” findings on the train-set. From the investigations in the <a href="https://openreview.net/forum?id=Ebt7JgMHv1">ICLR paper</a> and conversations with a few researchers, my understanding is these “spurious” directions have not performed well on held-out generalization sets, so in practice it is easy to distinguish the “illusions” from “real effects”. But, I am interested in developing even stronger optimize-to-interpret methods. With more powerful optimizers, illusion effects should be even stronger, and competition from “spurious” signals may make “true” signals harder to locate in training. So, here are 6 possible ways to fight against the interpretability illusion. Most of them can be tried in combination.</p>
+<ol type="1">
+<li><p><strong>The causal model still holds, and may still be what we want. </strong>I.e.: We call it an interpretability “illusion” because we are failing to describe the model’s normal functioning. But unusual functioning is fine for some goals! Applications include:</p>
+<ol type="1">
+<li>Finding latent circuits which might be targetable by optimized non-routine inputs (e.g.&nbsp;redteaming)</li>
+<li>“Pinning” a false belief into the model, for testing or alignment training [e.g., forcing the model to believe it is not being watched, in order to test deception or escape behavior].</li>
+</ol>
+<p>The key point is that the interpretability illusion is a failure to <em>describe typical model operation</em>, but a success for <em>enacting the causal model.</em></p></li>
+<li><p><strong>Study more detailed causal models with multiple output streams, multiple options for the input variables, or more compositions. </strong>To start, notice that it is obviously good to have more outputs/consequences of the causal mode in the optimization. Why? First, if we have multiple output-measurements at the end of the causal graph, it is harder for a spurious direction to perform well on all of them by chance. Additionally: if an abstract causal model has modular pieces, then there should be exponentially many combinatorial-swap options that we can test. To score well on the IIA train-loss across all swaps, a ‘spurious’ structure would have to be very sophisticated. While Lange et al.&nbsp;show that spurious solutions may arise for searches in 1 direction, it should be less likely to occur for _pairs _of directions, and less likely yet for full spurious circuits. So, illusion problems may be reduced by scaling up model complexity. Some possible issues remain, though:</p>
+<ol start="3" type="1">
+<li>In some cases we may struggle to identify specific directions within a multi-part model; i.e., we might find convincing overall performance for a circuit, but an individual dimension or two could be spurious, and we might be unable to determine exactly which.</li>
+<li>This approach relies on big, deep, abstract causal models existing inside the networks, with sufficient robustness in their functioning across variable changes. While there is some suggestive work on predictable / standardized structures in LLM’s, from investigations like <a href="https://arxiv.org/pdf/2310.17191.pdf">Feng and Steinhardt (2023</a>)’s entity binding case study, the <a href="https://github.com/redwoodresearch/Easy-Transformer/blob/main/README.md">IOI</a> paper, and studies of <a href="https://arxiv.org/pdf/2305.14699.pdf">recursive tasks</a>, the consistency/robustness and DAS-discoverability of larger structures in scaled-up models is not yet clear. More case studies in larger models would be of value.</li>
+</ol></li>
+<li><p><strong>Measure generalizability, and use it to filter out spurious findings after-the-fact.</strong> This is just common-sense, and researchers are already doing this in several ways. We can construct train/test splits with random sampling, and conclude a found direction is spurious if it does not generalize on the test data; or we could ask how the patched model generalizes out-of-training-distribution following a small perturbation, such as adding extra preceding tokens. Spurious solutions are likely to be sensitive to minor changes, and for many purposes we are primarily interested in causal models that generalize well. As mentioned earlier, the <a href="https://openreview.net/forum?id=Ebt7JgMHv1">ICLR</a> paper’s `spurious’ findings performed sufficiently poorly on generalization sets that they could easily be distinguished from real effects.</p></li>
+<li><p><strong>Quantify a null distribution </strong>In the <a href="https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of">“Illusion” post</a>, Lange et al.&nbsp;show that the strength of the spurious signal depends on how many neurons it is allowed to optimize over. So, a very strong signal, taken over a small optimization set, should be more convincing. Thinking as statisticians, we could attempt to construct a `null distribution’ for the spurious signals; this approach could offer evidence that a causal map element is being represented “at all.” One could imagine doing this kind of inference for individual <em>pieces</em> of a larger causal model, with difference uncertainty bars for different components.</p></li>
+<li><p><strong>Use unsupervised feature extraction as a first step</strong>. Recent interpretability work with <a href="https://transformer-circuits.pub/2023/monosemantic-features">auto-encoders</a> <a href="https://arxiv.org/abs/2309.08600">suggests</a> that many of a small transformer’s most important features can be identified. If this technique scales well, it could <strong><em>vastly</em></strong> reduce the amount of optimization pressure needed to identify the right directions, shrinking the search space and reducing optimistic bias / spurious findings.</p></li>
+<li><p><strong>Incorporate additional information as a prior / penalty for optimization. </strong>As Lange et al.&nbsp;note in the <a href="https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of">“Illusion” post</a>, and as described in Section 5 of the <a href="https://openreview.net/forum?id=Ebt7JgMHv1">ICLR paper</a>, it is possible to supply additional evidence that a found direction is “faithful” (or not). In the case study with the IOI task, they argued the direction found by DAS on a residual layer fell within the query subspace of human-identified “name mover” heads. More generally, if intuitions about faithfulness can be scored with a quantitative metric, then tacking that metric onto the optimization as a penalty should help the optimizer favor “correct” directions over “spurious” solutions. Still, using this approach requires answering two difficult questions: what additional evidence to choose, and then how to quantify it? Some vague possibilities:</p>
+<ol start="5" type="1">
+<li>Perhaps next-gen AI will offer accurate “auto-grading”, giving a general yet quantitative evaluation of plausibility of found solutions</li>
+<li>Somehow draw information from analyzing very basic components of the network: punish “MLP-in-the-middle” solutions by using some combination of changes in MLP activations / attention, gradients, sizes of the induced changes in the residual stream, etc.</li>
+<li>If we know of structures that “should be related” to the task, such as entity bindings (<a href="https://arxiv.org/pdf/2310.17191.pdf">Feng and Steinhardt (2023)</a>), we can try to build outwards from them; or if we have a reliable feature dictionary from sparse auto-encoders or “<a href="https://arxiv.org/pdf/2111.13654.pdf">belief graph</a>” per Hase et al.&nbsp;2021 which offers advance predictions for how subsequent layers’ features may react to a change, we can penalize lack of correlation or causal effects on downstream features.</li>
+</ol>
+<p>Using extra information in this way unfortunately spends its usability for validation. But if utilizing it prevents the optimization from getting stuck on false signals, the trade-off should be favorable.</p></li>
+</ol>
+<p>—-</p>
+<p>Thanks to Atticus Geiger, Jing Huang, Ben Thompson, Zygimantas Straznickas and others for conversations and feedback on earlier drafts.</p>
+<hr>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{sklar2023,
+  author = {Sklar, Michael},
+  title = {6 {Ways} to {Fight} the {Interpretability} {Illusion}},
+  date = {2023-11-28},
+  url = {https://confirmlabs.org/posts/fight_the_illusion.html},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-sklar2023" class="csl-entry quarto-appendix-citeas" role="listitem">
+Sklar, Michael. 2023. <span>“6 Ways to Fight the Interpretability
+Illusion.”</span> November 28, 2023. <a href="https://confirmlabs.org/posts/fight_the_illusion.html">https://confirmlabs.org/posts/fight_the_illusion.html</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
