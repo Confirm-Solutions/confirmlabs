@@ -1,13 +1,13 @@
 # confirmlabs
 
 We use Quarto for running this website. To write a new post:
-- create an .ipynb or .md file in the `posts/` folder.
-- copy the header from one of the existing posts. Edit to set the date and author and such.
-- leave the `bibliography` portion of the header. Then, you can add and cite articles in the `biblio.bib` file.
-- for local preview: 
+- Create an .ipynb or .md file in the `posts/` folder.
+- Copy the header from one of the existing posts. Edit to set the date and author and such.
+- Leave the `bibliography` portion of the header. Then, you can add and cite articles in the `biblio.bib` file.
+- For local preview: 
   - `brew install quarto` 
   - `quarto preview`
-- committing and pushing to the `main` branch will trigger an Actions workflow that will update the main website.
+- Committing and pushing to the `main` branch will trigger an Actions workflow that will update the main website.
 
 ## More info:
 
