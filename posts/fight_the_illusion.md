@@ -1,6 +1,6 @@
 ---
 title: '6 Ways to Fight the Interpretability Illusion'
-date: 11/28/2023
+date: 11/30/2023
 author:
   - name: 
       given: Michael
@@ -10,15 +10,12 @@ bibliography: biblio.bib
 format:
   html: default
   ipynb: default
-draft: true
+draft: false
 ---
 
 <!-----
 
-
-
 Conversion time: 0.504 seconds.
-
 
 Using this Markdown file:
 
@@ -37,7 +34,7 @@ Conversion notes:
 
 Recommended pre-reading: 
 
-- Atticus Geiger’s [DAS](https://arxiv.org/abs/2303.02536) and [Boundless DAS](https://arxiv.org/pdf/2305.08809.pdf). 
+- Geiger et al.'s [DAS](https://arxiv.org/abs/2303.02536) and [Boundless DAS](https://arxiv.org/pdf/2305.08809.pdf). 
 - [An Interpretability Illusion for Activation Patching of Arbitrary Subspaces](https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of). 
 - The corresponding [ICLR paper, “Is This the Subspace You Are Looking For?](https://openreview.net/forum?id=Ebt7JgMHv1)”
 
@@ -50,7 +47,7 @@ This post is motivated by Lange, Makelov, and Nanda's LessWrong post [Interpreta
     - "Pinning" a false belief into the model, for testing or alignment training. For example, forcing the model to believe it is not being watched, in order to test deception or escape behavior.
 
 	The key point is that the interpretability illusion is a failure to _describe typical model operation_, but a success for _enacting the causal model_.
-2. **Study more detailed causal models with multiple output streams, multiple options for the input variables, or more compositions.** To start, notice that it is obviously good to have more outputs/consequences of the causal mode in the optimization. Why? First, if we have multiple output-measurements at the end of the causal graph, it is harder for a spurious direction to perform well on all of them by chance. Additionally, if an abstract causal model has modular pieces, then there should be exponentially many combinatorial-swap options that we can test. To score well on the IIA train-loss across all swaps, a spurious structure would have to be very sophisticated. While Lange et al. show that spurious solutions may arise for searches in 1 direction, it should be less likely to occur for _pairs_ of directions, and less likely yet for full spurious circuits. So, illusion problems may be reduced by scaling up model complexity. Some possible issues remain, though:
+2. **Study more detailed causal models with multiple output streams, multiple options for the input variables, or more compositions.** To start, notice that it is obviously good to have more outputs/consequences of the causal mode in the optimization. Why? First, if we have multiple output-measurements at the end of the causal graph, it is harder for a spurious direction to perform well on all of them by chance. Additionally, if an abstract causal model has modular pieces, then there should be exponentially many combinatorial-swap options that we can test. To score well on the optimization's training-loss across all swaps (in the language of [DAS](https://arxiv.org/abs/2303.02536) this is a high "IIA"), the spurious structure would have to be very sophisticated. While Lange et al. show that spurious solutions may arise for searches in 1 direction, it should be less likely to occur for _pairs_ of directions, and less likely yet for full spurious circuits. So, illusion problems may be reduced by scaling up the complexity of the causal model. Some possible issues remain, though:
     - In some cases we may struggle to identify specific directions within a multi-part model; i.e., we might find convincing overall performance for a circuit, but an individual dimension or two could be spurious, and we might be unable to determine exactly which.
     - This approach relies on big, deep, abstract causal models existing inside the networks, with sufficient robustness in their functioning across variable changes. There is some suggestive work on predictable / standardized structures in LLM’s, from investigations like [Feng and Steinhardt (2023](https://arxiv.org/pdf/2310.17191.pdf))’s entity binding case study, the [indirect object identification (IOI)](https://github.com/redwoodresearch/Easy-Transformer/blob/main/README.md) paper, and studies of [recursive tasks](https://arxiv.org/pdf/2305.14699.pdf). However, the consistency/robustness and DAS-discoverability of larger structures in scaled-up models is not yet clear. More case studies in larger models would be valuable.
 3. **Measure generalizability, and use it to filter out spurious findings after-the-fact.** This is just common-sense, and researchers are already doing this in several ways. We can construct train/test splits with random sampling, and conclude a found direction is spurious if it does not generalize on the test data; or we could ask how the patched model generalizes out-of-training-distribution following a small perturbation, such as adding extra preceding tokens. Spurious solutions are likely to be sensitive to minor changes, and for many purposes we are primarily interested in causal models that generalize well. As mentioned earlier, the [ICLR ](https://openreviewnet/forum?id=Ebt7JgMHv1) paper’s `spurious’ findings performed sufficiently poorly on generalization sets that they could easily be distinguished from real effects.
@@ -58,12 +55,12 @@ This post is motivated by Lange, Makelov, and Nanda's LessWrong post [Interpreta
 5. **Use unsupervised feature extraction as a first step.** Recent interpretability work with auto-encoders ([Bricken et al. 2023](https://transformer-circuits.pub/2023/monosemantic-features), [Cunningham et al. 2023](https://arxiv.org/abs/2309.08600)) suggests that many of a small transformer’s most important features can be identified. If this technique scales well, it could **_vastly_** reduce the amount of optimization pressure needed to identify the right directions, shrinking the search space and reducing optimistic bias and spurious findings.
 6. **Incorporate additional information as a prior / penalty for optimization.** As Lange et al. note in the  [“Illusion” post](https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of), and as described in Section 5 of the [ICLR paper](https://openreview.net/forum?id=Ebt7JgMHv1), it is possible to supply additional evidence that a found direction is faithful or not. In the case study with the IOI task, they argued the direction found by DAS on a residual layer fell within the query subspace of human-identified name mover heads. More generally, if intuitions about faithfulness can be scored with a quantitative metric, then tacking that metric onto the optimization as a penalty should help the optimizer favor correct directions over spurious solutions. Still, using this approach requires answering two difficult questions: what additional evidence to choose, and then how to quantify it? Some rough possibilities:
     - If we know of structures that should be related to the task, such as entity bindings ([Feng and Steinhardt (2023)](https://arxiv.org/pdf/2310.17191.pdf)), we can try to build outwards from them; or if we have a reliable feature dictionary from sparse auto-encoders or "[belief graph](https://arxiv.org/pdf/2111.13654.pdf)" per Hase et al. 2021 which offers advance predictions for how subsequent layers' features may react to a change, we can penalize lack of correlation or causal effects on downstream features.
-    - Somehow draw information from analyzing very basic components of the network: punish "MLP-in-the-middle" solutions by using some combination of changes in MLP activations / attention, gradients, sizes of the induced changes in the residual stream, etc.
+    - Somehow use the basic structure of the network to quantify which directions are 'dormant.' Although this sounds simple, I am unsure how to do it, given the indeterminacy of what a 'dormant' direction even means (this issue is described in Lange et al.'s lesswrong [post](https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of), Appendix section: the importance of correct model units.)
     - Perhaps next-gen AI will offer accurate "auto-grading", giving a general yet quantitative evaluation of plausibility of found solutions
 
-    Using extra information in this way unfortunately spends its usability for validation. But if extra information prevents the optimization from getting stuck on false signals, the trade-off should be favorable.
+    Using extra information in this way unfortunately spends its usability for validation. But preventing the optimization from getting stuck on spurious signals may be the higher priority.
 
 
 ------
 
-Thanks to Atticus Geiger, Jing Huang, Ben Thompson, Zygimantas Straznickas and others for  conversations and feedback on earlier drafts.
+Thanks to Atticus Geiger, Jing Huang, Zhengxuan Wu, Ben Thompson, Zygimantas Straznickas and others for conversations and feedback on earlier drafts.
