@@ -4,5 +4,6 @@ listing:
   sort: "date desc"
   type: grid
   categories: false
+  fields: [image, date, title, description, author]
 citation: false
 ---

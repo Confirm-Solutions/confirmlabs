@@ -7,7 +7,7 @@ author:
       family: Sklar
     email: michaelbsklar@gmail.com
 bibliography: biblio.bib
-description: Notes on using optimization and causal models for interpretability
+description: Notes on using optimization and causal models for interpretability.
 format:
   html: default
   ipynb: default

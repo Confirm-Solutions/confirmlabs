@@ -2,12 +2,16 @@
 
 We use Quarto for running this website. To write a new post:
 - Create an .ipynb or .md file in the `posts/` folder.
-- Copy the header from one of the existing posts. Edit to set the date and author and such.
+- Copy the header from one of the existing posts. In the YAML "frontmatter" at the top of the post, edit to set the date and author and such.
+	- Add `description: 'some description'` to the frontmatter to set the short blurb that is used on the main post listing page. 
+	- Add `image: filename` to the frontmatter to set the image used on the main post listing page.
 - Leave the `bibliography` portion of the header. Then, you can add and cite articles in the `biblio.bib` file.
 - For local preview: 
   - `brew install quarto` 
   - `quarto preview`
 - Committing and pushing to the `main` branch will trigger an Actions workflow that will update the main website.
+	- You can watch that Actions workflow here: https://github.com/Confirm-Solutions/confirmlabs/actions
+
 
 ## More info:
 
