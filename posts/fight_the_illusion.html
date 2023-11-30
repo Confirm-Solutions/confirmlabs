@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-11-28">
+<meta name="dcterms.date" content="2023-11-30">
 
 <title>Confirm - 6 Ways to Fight the Interpretability Illusion</title>
 <style>
@@ -64,10 +64,10 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../styles.css">
 <meta name="citation_title" content="6 Ways to Fight the Interpretability Illusion">
-<meta name="citation_publication_date" content="2023-11-28">
-<meta name="citation_cover_date" content="2023-11-28">
+<meta name="citation_publication_date" content="2023-11-30">
+<meta name="citation_cover_date" content="2023-11-30">
 <meta name="citation_year" content="2023">
-<meta name="citation_online_date" content="2023-11-28">
+<meta name="citation_online_date" content="2023-11-30">
 <meta name="citation_fulltext_html_url" content="https://confirmlabs.org/posts/fight_the_illusion.html">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=GPT-NeoX-20B: An open-source autoregressive language model;,citation_abstract=We introduce GPT-NeoX-20B, a 20 billion parameter autoregressive language model trained on the Pile, whose weights will be made freely and openly available to the public through a permissive license. It is, to the best of our knowledge, the largest dense autoregressive model that has publicly available weights at the time of submission. In this work, we describe GPT-NeoX-20B’s architecture and training, and evaluate its performance. We open-source the training and evaluation code, as well as the model weights, at https://github.com/EleutherAI/gpt-neox.;,citation_author=Sidney Black;,citation_author=Stella Biderman;,citation_author=Eric Hallahan;,citation_author=Quentin Anthony;,citation_author=Leo Gao;,citation_author=Laurence Golding;,citation_author=Horace He;,citation_author=Connor Leahy;,citation_author=Kyle McDonell;,citation_author=Jason Phang;,citation_author=Michael Pieler;,citation_author=Usvsn Sai Prashanth;,citation_author=Shivanshu Purohit;,citation_author=Laria Reynolds;,citation_author=Jonathan Tow;,citation_author=Ben Wang;,citation_author=Samuel Weinbach;,citation_publication_date=2022-05;,citation_cover_date=2022-05;,citation_year=2022;,citation_fulltext_html_url=https://aclanthology.org/2022.bigscience-1.9;,citation_doi=10.18653/v1/2022.bigscience-1.9;,citation_conference_title=Proceedings of BigScience episode #5 – workshop on challenges &amp;amp;amp; perspectives in creating large language models;,citation_conference=Association for Computational Linguistics;">
@@ -130,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 28, 2023</p>
+      <p class="date">November 30, 2023</p>
     </div>
   </div>
   
@@ -143,10 +143,7 @@ ul.task-list li input[type="checkbox"] {
 
 <!-----
 
-
-
 Conversion time: 0.504 seconds.
-
 
 Using this Markdown file:
 
@@ -163,7 +160,7 @@ Conversion notes:
 ----->
 <p>Recommended pre-reading:</p>
 <ul>
-<li>Atticus Geiger’s <a href="https://arxiv.org/abs/2303.02536">DAS</a> and <a href="https://arxiv.org/pdf/2305.08809.pdf">Boundless DAS</a>.</li>
+<li>Geiger et al.’s <a href="https://arxiv.org/abs/2303.02536">DAS</a> and <a href="https://arxiv.org/pdf/2305.08809.pdf">Boundless DAS</a>.</li>
 <li><a href="https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of">An Interpretability Illusion for Activation Patching of Arbitrary Subspaces</a>.</li>
 <li>The corresponding <a href="https://openreview.net/forum?id=Ebt7JgMHv1">ICLR paper, “Is This the Subspace You Are Looking For?</a>”</li>
 </ul>
@@ -176,7 +173,7 @@ Conversion notes:
 <li>“Pinning” a false belief into the model, for testing or alignment training. For example, forcing the model to believe it is not being watched, in order to test deception or escape behavior.</li>
 </ul>
 The key point is that the interpretability illusion is a failure to <em>describe typical model operation</em>, but a success for <em>enacting the causal model</em>.</li>
-<li><strong>Study more detailed causal models with multiple output streams, multiple options for the input variables, or more compositions.</strong> To start, notice that it is obviously good to have more outputs/consequences of the causal mode in the optimization. Why? First, if we have multiple output-measurements at the end of the causal graph, it is harder for a spurious direction to perform well on all of them by chance. Additionally, if an abstract causal model has modular pieces, then there should be exponentially many combinatorial-swap options that we can test. To score well on the IIA train-loss across all swaps, a spurious structure would have to be very sophisticated. While Lange et al.&nbsp;show that spurious solutions may arise for searches in 1 direction, it should be less likely to occur for <em>pairs</em> of directions, and less likely yet for full spurious circuits. So, illusion problems may be reduced by scaling up model complexity. Some possible issues remain, though:
+<li><strong>Study more detailed causal models with multiple output streams, multiple options for the input variables, or more compositions.</strong> To start, notice that it is obviously good to have more outputs/consequences of the causal mode in the optimization. Why? First, if we have multiple output-measurements at the end of the causal graph, it is harder for a spurious direction to perform well on all of them by chance. Additionally, if an abstract causal model has modular pieces, then there should be exponentially many combinatorial-swap options that we can test. To score well on the optimization’s training-loss across all swaps (in the language of <a href="https://arxiv.org/abs/2303.02536">DAS</a> this is a high “IIA”), the spurious structure would have to be very sophisticated. While Lange et al.&nbsp;show that spurious solutions may arise for searches in 1 direction, it should be less likely to occur for <em>pairs</em> of directions, and less likely yet for full spurious circuits. So, illusion problems may be reduced by scaling up the complexity of the causal model. Some possible issues remain, though:
 <ul>
 <li>In some cases we may struggle to identify specific directions within a multi-part model; i.e., we might find convincing overall performance for a circuit, but an individual dimension or two could be spurious, and we might be unable to determine exactly which.</li>
 <li>This approach relies on big, deep, abstract causal models existing inside the networks, with sufficient robustness in their functioning across variable changes. There is some suggestive work on predictable / standardized structures in LLM’s, from investigations like <a href="https://arxiv.org/pdf/2310.17191.pdf">Feng and Steinhardt (2023</a>)’s entity binding case study, the <a href="https://github.com/redwoodresearch/Easy-Transformer/blob/main/README.md">indirect object identification (IOI)</a> paper, and studies of <a href="https://arxiv.org/pdf/2305.14699.pdf">recursive tasks</a>. However, the consistency/robustness and DAS-discoverability of larger structures in scaled-up models is not yet clear. More case studies in larger models would be valuable.</li>
@@ -187,26 +184,26 @@ The key point is that the interpretability illusion is a failure to <em>describe
 <li><strong>Incorporate additional information as a prior / penalty for optimization.</strong> As Lange et al.&nbsp;note in the <a href="https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of">“Illusion” post</a>, and as described in Section 5 of the <a href="https://openreview.net/forum?id=Ebt7JgMHv1">ICLR paper</a>, it is possible to supply additional evidence that a found direction is faithful or not. In the case study with the IOI task, they argued the direction found by DAS on a residual layer fell within the query subspace of human-identified name mover heads. More generally, if intuitions about faithfulness can be scored with a quantitative metric, then tacking that metric onto the optimization as a penalty should help the optimizer favor correct directions over spurious solutions. Still, using this approach requires answering two difficult questions: what additional evidence to choose, and then how to quantify it? Some rough possibilities:
 <ul>
 <li>If we know of structures that should be related to the task, such as entity bindings (<a href="https://arxiv.org/pdf/2310.17191.pdf">Feng and Steinhardt (2023)</a>), we can try to build outwards from them; or if we have a reliable feature dictionary from sparse auto-encoders or “<a href="https://arxiv.org/pdf/2111.13654.pdf">belief graph</a>” per Hase et al.&nbsp;2021 which offers advance predictions for how subsequent layers’ features may react to a change, we can penalize lack of correlation or causal effects on downstream features.</li>
-<li>Somehow draw information from analyzing very basic components of the network: punish “MLP-in-the-middle” solutions by using some combination of changes in MLP activations / attention, gradients, sizes of the induced changes in the residual stream, etc.</li>
+<li>Somehow use the basic structure of the network to quantify which directions are ‘dormant.’ Although this sounds simple, I am unsure how to do it, given the indeterminacy of what a ‘dormant’ direction even means (this issue is described in Lange et al.’s lesswrong <a href="https://www.lesswrong.com/posts/RFtkRXHebkwxygDe2/an-interpretability-illusion-for-activation-patching-of">post</a>, Appendix section: the importance of correct model units.)</li>
 <li>Perhaps next-gen AI will offer accurate “auto-grading”, giving a general yet quantitative evaluation of plausibility of found solutions</li>
 </ul>
-Using extra information in this way unfortunately spends its usability for validation. But if extra information prevents the optimization from getting stuck on false signals, the trade-off should be favorable.</li>
+Using extra information in this way unfortunately spends its usability for validation. But preventing the optimization from getting stuck on spurious signals may be the higher priority.</li>
 </ol>
 <hr>
-<p>Thanks to Atticus Geiger, Jing Huang, Ben Thompson, Zygimantas Straznickas and others for conversations and feedback on earlier drafts.</p>
+<p>Thanks to Atticus Geiger, Jing Huang, Zhengxuan Wu, Ben Thompson, Zygimantas Straznickas and others for conversations and feedback on earlier drafts.</p>
 
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{sklar2023,
   author = {Sklar, Michael},
   title = {6 {Ways} to {Fight} the {Interpretability} {Illusion}},
-  date = {2023-11-28},
+  date = {2023-11-30},
   url = {https://confirmlabs.org/posts/fight_the_illusion.html},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-sklar2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 Sklar, Michael. 2023. <span>“6 Ways to Fight the Interpretability
-Illusion.”</span> November 28, 2023. <a href="https://confirmlabs.org/posts/fight_the_illusion.html">https://confirmlabs.org/posts/fight_the_illusion.html</a>.
+Illusion.”</span> November 30, 2023. <a href="https://confirmlabs.org/posts/fight_the_illusion.html">https://confirmlabs.org/posts/fight_the_illusion.html</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
