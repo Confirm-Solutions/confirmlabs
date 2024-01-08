@@ -2,9 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/TDC2023.html",
       "/posts/fight_the_illusion.html",
-      "/posts/catalog.html",
-      "/posts/TDC2023.html"
+      "/posts/catalog.html"
     ]
   }
 ]
