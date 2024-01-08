@@ -7,7 +7,8 @@ We use Quarto for running this website. To write a new post:
 	- Add `image: filename` to the frontmatter to set the image used on the main post listing page.
 - Leave the `bibliography` portion of the header. Then, you can add and cite articles in the `biblio.bib` file.
 - For local preview: 
-  - `brew install quarto` 
+  - install on mac: `brew install quarto` 
+  - install on ubuntu: `sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb; sudo apt-get install gdebi-core; sudo gdebi quarto-linux-amd64.deb`
   - `quarto preview`
 - Committing and pushing to the `main` branch will trigger an Actions workflow that will update the main website.
 	- You can watch that Actions workflow here: https://github.com/Confirm-Solutions/confirmlabs/actions
