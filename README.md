@@ -13,6 +13,15 @@ We use Quarto for running this website. To write a new post:
 - Committing and pushing to the `main` branch will trigger an Actions workflow that will update the main website.
 	- You can watch that Actions workflow here: https://github.com/Confirm-Solutions/confirmlabs/actions
 
+## Writing checklist
+
+- the obvious: typos and grammar.
+- did the post get messed up somehow when pushed and visible on confirmlabs.org instead of locally?
+  - did you forget to `git add` an image?
+- arxiv links are links to abstracts and not pdfs.
+- all links work correctly.
+- consistent capitalization and word usage.
+- where appropriate, convert parentheticals to footnotes?
 
 ## More info:
 
