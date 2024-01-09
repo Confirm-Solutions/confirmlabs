@@ -46,7 +46,7 @@
     "href": "posts/TDC2023.html#footnotes",
     "title": "Takeaways from the NeurIPS 2023 Trojan Detection Competition",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nWhile an unintended trigger might exist in the base model, many unintended triggers are a side effect of the training process for inserting the intended triggers.↩︎\nHyperparameters: population_size=1, children_per_parent=512↩︎\nThe “residual stream” at layer L↩︎"
+    "text": "Footnotes\n\n\nWhile an unintended trigger might exist in the base model, many unintended triggers are a side effect of the training process for inserting the intended triggers.↩︎\nThe “residual stream” at layer L↩︎"
   },
   {
     "objectID": "index.html",
