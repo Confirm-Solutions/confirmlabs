@@ -12,6 +12,12 @@ We use Quarto for running this website. To write a new post:
   - `quarto preview`
 - Committing and pushing to the `main` branch will trigger an Actions workflow that will update the main website.
 	- You can watch that Actions workflow here: https://github.com/Confirm-Solutions/confirmlabs/actions
+	
+## Paper publication checklist
+
+- put the latest draft in `papers/`. 
+- put the latest version on arxiv.
+- share it widely!
 
 ## Writing checklist
 

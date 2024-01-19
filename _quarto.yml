@@ -36,3 +36,4 @@ execute:
 
 resources:
   - CNAME 
+  - "papers/*"
