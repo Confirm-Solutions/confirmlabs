@@ -668,7 +668,7 @@ Dreaming Phi-2
 </div>
 </div>
 </div>
-<p>Dreaming is the process of maximizing some internal or output feature of a neural network by iteratively tweaking the input to the network. The most well-known example is DeepDream <span class="citation" data-cites="mordvintsev-2015"><a href="#ref-mordvintsev-2015" role="doc-biblioref">[1]</a></span>. Besides making pretty images, dreaming is useful for interpreting the purpose of the internal components of a neural network <span class="citation" data-cites="cammarata2020thread olah2017feature yosinski2015understanding"><a href="#ref-cammarata2020thread" role="doc-biblioref">[2]</a>–<a href="#ref-yosinski2015understanding" role="doc-biblioref">[4]</a></span>. Dreaming has only been applied to vision models because the input space to a vision model is approximately continuous and algorithms like gradient descent work well. For language models, the input space is discrete and very different algorithms are needed. Extending work in the adversarial attacks literature <span class="citation" data-cites="zou2023universal"><a href="#ref-zou2023universal" role="doc-biblioref">[5]</a></span>, in the paper, we introduce the Evolutionary Prompt Optimization (EPO) algorithm for dreaming with language models.</p>
+<p>Dreaming is the process of maximizing some internal or output feature of a neural network by iteratively tweaking the input to the network. The most well-known example is DeepDream <span class="citation" data-cites="mordvintsev-2015"><a href="#ref-mordvintsev-2015" role="doc-biblioref">[1]</a></span>. Besides making pretty images, dreaming is useful for interpreting the purpose of the internal components of a neural network <span class="citation" data-cites="cammarata2020thread olah2017feature yosinski2015understanding"><a href="#ref-cammarata2020thread" role="doc-biblioref">[2]</a>–<a href="#ref-yosinski2015understanding" role="doc-biblioref">[4]</a></span>. To our knowledge, Dreaming has previously only been applied to vision models because the input space to a vision model is approximately continuous and algorithms like gradient descent work well. For language models, the input space is discrete and very different algorithms are needed. Extending work in the adversarial attacks literature <span class="citation" data-cites="zou2023universal"><a href="#ref-zou2023universal" role="doc-biblioref">[5]</a></span>, in the paper, we introduce the Evolutionary Prompt Optimization (EPO) algorithm for dreaming with language models.</p>
 <p>On this page, we demonstrate running the EPO algorithm for a neuron in Phi-2. There is also a Colab notebook version of this page available.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -796,9 +796,9 @@ penalty=2.25 xentropy=4.43 target=2.80 ' study found another pattern of similar-
 </div>
 </div>
 <p>We also plot the evolution of the Pareto frontier over the course of the optimization run.</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>linestyles <span class="op">=</span> [<span class="st">'k--o'</span>, <span class="st">'k:o'</span>, <span class="st">'k--*'</span>, <span class="st">'k:*'</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, n <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">299</span>]):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, n <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">300</span>]):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    pareto <span class="op">=</span> build_pareto_frontier(tokenizer, history.subset(<span class="bu">slice</span>(<span class="dv">0</span>, n)))</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    ordering <span class="op">=</span> np.argsort(pareto.xentropy)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    plt.plot(pareto.full_xentropy, pareto.full_target, linestyles[i <span class="op">%</span> <span class="bu">len</span>(linestyles)], label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> iterations"</span>)</span>
@@ -853,7 +853,12 @@ penalty=2.25 xentropy=4.43 target=2.80 ' study found another pattern of similar-
 </section>
 <section id="causal-token-attribution" class="level2">
 <h2 class="anchored" data-anchor-id="causal-token-attribution">Causal token attribution</h2>
-<p>The visualizations below show the sensitivity to each token in the prompts. We first filter to the 32 “best” alternative tokens based on backpropagated token gradients. Then, amongst those 32 tokens, we calculate two sensitivities: - the drop in activation from swapping the token to the next most likely token. In the visualization, we show this in the height of the token bars. - the drop in activation from swapping the token to the least likely token. In the visualization, we show this with the color of the tokens. Darker reds indicate a larger drop in activation.</p>
+<p>The visualizations below show the sensitivity to each token in the prompts. We first filter to the 32 “best” alternative tokens based on backpropagated token gradients. Then, amongst those 32 tokens, we calculate two sensitivities:</p>
+<ul>
+<li>the drop in activation from swapping the token to the next highest activation alternative token. In the visualization, we show this in the height of the token bars.</li>
+<li>the drop in activation from swapping the token to the lowest activation alternative token. In the visualization, we show this with the color of the tokens. Darker reds indicate a larger drop in activation.</li>
+</ul>
+<p>The visualizations are interactive. Hover over each token to see a tooltip with the top-3 highest activation alternative tokens and the single lowest alternative token.</p>
 <p>We show attribution visualizations for each prompt on the Pareto frontier. For all the prompts, swapping the last token can reduce the neuron activation to zero. Swapping other token can reduces the activation much less. The comma in the second-to-last position is also important and often has no viable substitute which is indicated by its tall bar.</p>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(ordering)):</span>
@@ -5206,7 +5211,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":true,"closeEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":true});</script>
 
 
 
