@@ -11,6 +11,7 @@ website:
     left:
       - href: index.qmd
         text: Confirm
+  google-analytics: "G-MNDDCB3H9S"
 
 citation: true
 link-citations: true
