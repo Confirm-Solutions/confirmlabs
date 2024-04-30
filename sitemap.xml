@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://confirmlabs.org/posts/dreamy.html</loc>
-    <lastmod>2024-02-06T21:56:41.506Z</lastmod>
-  </url>
-  <url>
-    <loc>https://confirmlabs.org/posts/TDC2023.html</loc>
-    <lastmod>2024-02-06T21:56:41.478Z</lastmod>
-  </url>
-  <url>
     <loc>https://confirmlabs.org/index.html</loc>
-    <lastmod>2024-02-06T21:56:41.474Z</lastmod>
+    <lastmod>2024-04-30T17:22:34.129Z</lastmod>
+  </url>
+  <url>
+    <loc>https://confirmlabs.org/posts/dreamy.html</loc>
+    <lastmod>2024-04-30T17:22:34.161Z</lastmod>
   </url>
   <url>
     <loc>https://confirmlabs.org/posts/fight_the_illusion.html</loc>
-    <lastmod>2024-02-06T21:56:41.506Z</lastmod>
+    <lastmod>2024-04-30T17:22:34.161Z</lastmod>
   </url>
   <url>
     <loc>https://confirmlabs.org/posts/catalog.html</loc>
-    <lastmod>2024-02-06T21:56:41.498Z</lastmod>
+    <lastmod>2024-04-30T17:22:34.153Z</lastmod>
+  </url>
+  <url>
+    <loc>https://confirmlabs.org/posts/TDC2023.html</loc>
+    <lastmod>2024-04-30T17:22:34.133Z</lastmod>
   </url>
 </urlset>
