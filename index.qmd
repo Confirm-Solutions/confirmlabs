@@ -6,3 +6,32 @@ listing:
   categories: false
 citation: false
 ---
+
+## Confirm Labs
+
+Confirm Labs is a research group run by Michael Sklar and [Ben Thompson](https://tbenthompson.com). In April 2023, we transitioned into AI safety from our past work on statistical theory/software to speed up the FDA.
+
+We have two ongoing projects: 
+
+(1) **Adversarial attacks:** We believe that developing better white-box
+adversarial techniques can help with (a) evaluating model capabilities via red-teaming (b) model interpretability (c) providing data and feedback for safety-training pipelines.
+
+    Recently, we have built methods for powerful and
+    fluent adversarial attacks. This work is currently being compiled into a paper
+    to be released in May 2024. Earlier this year, we published ["Fluent Dreaming for
+    Language Models"](https://arxiv.org/pdf/2402.01702) which combines whitebox
+    optimization with interpretability. We also won a division of the [NeurIPS 2023
+    Trojan Detection Competition](https://confirmlabs.org/posts/TDC2023).
+
+(2) **Pretraining AI editor architectures:** We believe AI inspection of AI
+internals could become a useful component of AI interpretability and oversight.
+Inspired by the success of the pre-training paradigm in language models, we are
+designing models that are trained to understand the inner workings of a target
+model. In particular, we are building editor architectures that take as inputs
+the activations of a frozen target model as well as language-based editing
+instructions, and as their output will "puppet" the activation stream of the
+target model to achieve desired results. Fine-tuning the resulting model for
+interpretability tasks could result in powerful tools for interpretability or
+oversight. 
+
+## Articles

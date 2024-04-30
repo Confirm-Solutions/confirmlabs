@@ -28,8 +28,6 @@ format:
     grid:
       margin-width: 350px
 
-filters:
-   - lightbox
 lightbox: auto
 
 execute:
