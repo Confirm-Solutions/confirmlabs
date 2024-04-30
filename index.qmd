@@ -9,7 +9,7 @@ citation: false
 
 ## Confirm Labs
 
-Confirm Labs is a research group run by Michael Sklar and [Ben Thompson](https://tbenthompson.com). In April 2023, we transitioned into AI safety from our past work on statistical theory/software to speed up the FDA.
+Confirm Labs is a research group run by [Michael Sklar](https://www.linkedin.com/in/michael-sklar/) and [Ben Thompson](https://tbenthompson.com). In April 2023, we transitioned into AI safety from our past work on statistical theory/software to speed up the FDA.
 
 We have two ongoing projects: 
 
