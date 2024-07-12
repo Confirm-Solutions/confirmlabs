@@ -694,7 +694,7 @@ Plan
 </section>
 <section id="attack-success-internal-activations" class="level2">
 <h2 class="anchored" data-anchor-id="attack-success-internal-activations">Attack success: internal activations</h2>
-<p>Next, we attack the RR model using our distillation-based white-box jailbreak method. To do this, we first finetune the first 4 layers of RR model on 2500 toxic prompts to create a toxified version of the model. Then, we use a two-part attack objective:</p>
+<p>Next, we attack the RR model using our distillation-based white-box jailbreak method. To do this, we first finetune the first 4 layers of the RR model on 2500 toxic generations to create a toxified version of the model. Then, we use a two-part attack objective:</p>
 <ul>
 <li>we token-force only the first token, “Here”.</li>
 <li>we generate 35 additional tokens using the toxified model. Then, we minimize the mean-squared-error between the layer 20 activations of the RR model and the toxified model on these 35 tokens.</li>
@@ -1354,7 +1354,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
