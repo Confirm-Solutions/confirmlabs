@@ -18,7 +18,7 @@ adversarial techniques can help with (a) evaluating model capabilities via red-t
 
     Recently, we have built methods for powerful and
     fluent adversarial attacks. This work is currently being compiled into a paper
-    to be released in May 2024. Earlier this year, we published ["Fluent Dreaming for
+    to be released in Summer 2024. Earlier this year, we published ["Fluent Dreaming for
     Language Models"](https://arxiv.org/pdf/2402.01702) which combines whitebox
     optimization with interpretability. We also won a division of the [NeurIPS 2023
     Trojan Detection Competition](https://confirmlabs.org/posts/TDC2023).
