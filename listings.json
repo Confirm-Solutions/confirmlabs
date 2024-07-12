@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/circuit_breaking.html",
       "/posts/dreamy.html",
       "/posts/TDC2023.html",
       "/posts/fight_the_illusion.html",
