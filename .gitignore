@@ -2,3 +2,4 @@
 _site/
 _freeze
 posts/dreamy_clone
+.env
