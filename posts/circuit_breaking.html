@@ -293,7 +293,7 @@ Summary
 </ul>
 <section id="high-refusal-rates-on-harmless-prompts" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="high-refusal-rates-on-harmless-prompts">High refusal rates on harmless prompts</h2>
-<p>In the circuit breakers paper, the authors demonstrate that performance on the MT Bench and MMLU benchmarks is maintained. They also measure an increase from 2 to 6% refusal on the WildChat dataset. We add an evaluation on the OR-Bench dataset <span class="citation" data-cites="cui2024orbenchoverrefusalbenchmarklarge"><a href="#ref-cui2024orbenchoverrefusalbenchmarklarge" role="doc-biblioref">[4]</a></span>. OR-Bench is intended to investigate prompts closer to the boundary between toxic and non-toxic. <code>or-bench-80k</code> mostly consists of prompts that are clearly non-toxic but often include terms or concepts that might remind a jumpy model of a toxic prompt. In comparison, <code>or-bench-hard-1k</code> is even more ambiguous and many of the prompts might be considered to be toxic. We use a random 200 prompt subset of the toxic prompts and the non-toxic prompts. We evaluate refusal by evaluating with gpt-4o.</p>
+<p>In the circuit breakers paper, the authors demonstrate that performance on the MT Bench and MMLU benchmarks is maintained. They also measure an increase from 2 to 6% refusal on the WildChat dataset. We add an evaluation on the OR-Bench dataset <span class="citation" data-cites="cui2024orbenchoverrefusalbenchmarklarge"><a href="#ref-cui2024orbenchoverrefusalbenchmarklarge" role="doc-biblioref">[4]</a></span>. OR-Bench is intended to investigate prompts closer to the boundary between toxic and non-toxic. <code>or-bench-80k</code> mostly consists of prompts that are clearly non-toxic but often include terms or concepts that might remind a jumpy model of a toxic prompt. In comparison, <code>or-bench-hard-1k</code> is even more ambiguous and many of the prompts might be considered to be toxic. We use a random 200 prompt subset of the toxic prompts and the non-toxic prompts. We evaluate refusal with gpt-4o.</p>
 <div id="cell-5" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
@@ -303,8 +303,8 @@ Summary
 </div>
 </div>
 </div>
-<p>We see a large increase in refusal rate in all categories. On the or-bench-80k, the refusal rate goes from one of the lowest amongst frontier models to one of the highest. A change in refusal rate is important when evaluating the effectiveness of a defensive method because shifting the classification boundary between toxic and non-toxic prompts will make adversarial attacks harder even without any fancy method. We would prefer to see attack success rate decrease while simultaneously maintaining a low refusal rate on decidedly non-toxic prompts.</p>
-<p>The refusal analysis here is a model-specific evaluation rather than a general issue with the circuit breaker methodology. There might be small changes to the circuit breaker training methodology or improvements to the training process that could ameliorate this issue.</p>
+<p>We see a large increase in refusal rate in all categories. On <code>or-bench-80k</code>, the refusal rate goes from one of the lowest amongst frontier models to one of the highest. A change in refusal rate is important when evaluating the effectiveness of a defensive method because shifting the classification boundary between toxic and non-toxic prompts will make adversarial attacks harder even without any fancy methodology. We would prefer to see attack success rate decrease while simultaneously maintaining a low refusal rate on decidedly non-toxic prompts.</p>
+<p>The refusal analysis here is a model-specific evaluation rather than a general issue with the circuit breaker methodology. There might be changes to the circuit breaker training methodology or improvements to the training process that could ameliorate this issue.</p>
 <p>To compare against other models, we share a marked-up figure from the OR-Bench paper below.</p>
 <p><a href="./orbench.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="./orbench.png" class="img-fluid"></a></p>
 <p>We also share a table of the prompts and generations for which the RR model refuses and the Llama-3 model does not refuse.</p>
@@ -1736,7 +1736,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
