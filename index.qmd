@@ -17,7 +17,7 @@ We have two ongoing projects:
 adversarial techniques can help with (a) evaluating model capabilities via red-teaming (b) model interpretability (c) providing data and feedback for safety-training pipelines.
 
     Recently, we have built methods for powerful and
-    fluent adversarial attacks described in ["Fluent Student-teacher Redteaming"](https://confirmlabs.org/papers/flrt.pdf). 
+    fluent adversarial attacks described in ["Fluent Student-Teacher Redteaming"](https://confirmlabs.org/papers/flrt.pdf). 
     Earlier this year, we published ["Fluent Dreaming for Language Models"](https://arxiv.org/pdf/2402.01702)
     which combines whitebox optimization with interpretability. We also won a
     division of the [NeurIPS 2023 Trojan Detection Competition](https://confirmlabs.org/posts/TDC2023).
